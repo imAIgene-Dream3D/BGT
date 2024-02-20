@@ -1,6 +1,6 @@
 # Behavioral Guided Transcriptomics (BGT) Pipeline
 
-This README is part of the extended BGT pipeline documentation, which builds upon the initial [BEHAV3D repository](https://github.com/AlievaRios/BEHAV3D). BEHAV3D is a multispectral imaging and analytical pipeline to 1) classify T cell based on behavior; 2) study tumor/organoid death dynamics; 3) backprojecting identified behavior in the imaging dataset. This pipeline runs after the [BEHAV3D T cell classification module] and includes additional features able to integrate this phenotypic T cell behavioral information wiht single cell transcriptomics of T cells. 
+This README is part of the extended BGT pipeline documentation, which builds upon the initial [BEHAV3D repository](https://github.com/AlievaRios/BEHAV3D). BEHAV3D is a multispectral imaging and analytical pipeline to 1) classify T cell based on behavior; 2) study tumor/organoid death dynamics; 3) backprojecting identified behavior in the imaging dataset. This pipeline runs with the output of [BEHAV3D T cell classification module](https://github.com/AlievaRios/BEHAV3D?tab=readme-ov-file#2-t-cell-behavior-classification-module)  and includes additional features able to integrate this phenotypic T cell behavioral information wiht single cell transcriptomics of T cells. 
 
 ## Overview
 
