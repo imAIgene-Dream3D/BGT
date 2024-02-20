@@ -4,11 +4,14 @@ This README is part of the extended BGT pipeline documentation, which builds upo
 
 ## Overview
 
-The extended BEHAV3D pipeline introduces new functionalities and integrates more deeply with transcriptomic data, allowing for a more comprehensive analysis of the interactions between immune cells and tumor organoids. This document will guide you through the added features and how to apply them to your existing BEHAV3D setup.
+The BGT introduces new functionalities that integrates imaging and transcriptomic data, allowing for a more comprehensive analysis of the molecular drivers of immune cells behavior upon tumor organoid targeting. 
 
-## Continuation of BEHAV3D
+## Input data
 
-This pipeline is a continuation of the original BEHAV3D platform. It assumes familiarity with the initial setup and use of BEHAV3D as detailed in the [original repository](https://github.com/AlievaRios/BEHAV3D). If you are new to BEHAV3D, please refer to the original documentation before proceeding with this extended version.
+### Dataset of classified T cells based on behavior. 
+This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) and our detailed Protocol to obtain this data[link to NaPo BEHAV3D] 
+### single cell sequencing data from T cells incubated with tumor organoids
+This data is obtained from running SORT seq on T cells incubated with tumor organoids.
 
 ## Additional Data Types and Outputs
 
