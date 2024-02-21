@@ -61,22 +61,15 @@ This data is obtained from running SORT seq on T cells incubated with tumor orga
 
 - [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates.)
 
-### ***(Optional) Additional Steps***
+### [scRNAseq data preprocessing]
 
-- [//]: # (Commented instructions: If there are optional steps or alternative modules, describe them here.)
+- [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Peter, put here your part and links to code uploaded in the scripts folder)
 
-## Advanced Troubleshooting
+### [Pseudotime trajectory inference]
 
-- [//]: # (Commented instructions: Offer solutions to issues that may arise specifically in relation to the new features.)
-
+- [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Farid, put here your part and links to code uploaded in the scripts folder)
 ## Further Reading and Documentation
 
 - [//]: # (Commented instructions: If there's further documentation, such as a wiki, or publications related to the extended features, provide links here.)
 
-## Contact and Support
 
-- [//]: # (Commented instructions: Offer guidance on how users can seek help or support for the extended pipeline.)
-
-## Acknowledgements
-
-- [//]: # (Commented instructions: Acknowledge any contributors, funding sources, or institutions that supported the development of the extended features.)
