@@ -15,7 +15,7 @@ This data is obtained from running SORT seq on T cells incubated with tumor orga
 
 ## Scripts
 
-## Timepoint graph generation : https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R
+Timepoint graph generation : https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R
 
 ## Additional Data Types and Outputs
 
