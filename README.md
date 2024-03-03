@@ -15,8 +15,7 @@ This data is obtained from running SORT seq on T cells incubated with tumor orga
 
 ## Scripts
 
-[Timepoint graph generation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R)
-[Multiple_timepoint_simulation_for population_seperation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
+[Timepoint graph generation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R), [Multiple_timepoint_simulation_for population_seperation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
 
 ## Additional Data Types and Outputs
 
