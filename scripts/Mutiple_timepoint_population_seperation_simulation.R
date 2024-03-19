@@ -50,16 +50,16 @@ population_separation_simulation <- function(working_directory_path, classified_
     plot_cd8 <- ggplot(cd8_data, aes(x = factor(contact), fill = factor(cluster))) +
       geom_bar(position = "fill") +
       scale_fill_manual(values = color_palette, name="Behavioral Signatures") +
-      labs(y = "Percentage", x = "CD8 T-cell Contact", title = sprintf("CD8 Engagement between timepoint %s", paste(interval, collapse = "-"))) +
+      labs(y = "Percentage", x = "CD8 T-cell Contact", title = sprintf("CD8 Engagement between timepoint %s minutes", paste(interval, collapse = "-"))) +
       theme_minimal() +
       coord_flip() +
       facet_wrap(~tcell_line)
     print(plot_cd8)
     
     plot_cd4 <- ggplot(cd4_data, aes(x = factor(contact), fill = factor(cluster))) +
-      geom_bar(position = "fill", name="Behavioral Signatures") +
-      scale_fill_manual(values = color_palette) +
-      labs(y = "Percentage", x = "Contact", title = sprintf("CD4 Engagement between timepoint %s", paste(interval, collapse = "-"))) +
+      geom_bar(position = "fill") +
+      scale_fill_manual(values = color_palette, name="Behavioral Signatures") +
+      labs(y = "Percentage", x = "CD4 T-cell Contact", title = sprintf("CD4 Engagement between timepoint %s minutes", paste(interval, collapse = "-"))) +
       theme_minimal() +
       coord_flip() +
       facet_wrap(~tcell_line)
