@@ -15,7 +15,9 @@ This data is obtained from running SORT seq on T cells incubated with tumor orga
 
 ## Scripts
 
-[Timepoint graph generation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R), [Multiple_timepoint_simulation_for population_seperation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
+1. [Timepoint graph generation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R)
+2. [Multiple_timepoint_simulation_for population_seperation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
+3. [Behavioral Guided Transcriptomics](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Behavioral-guided_transcriptomics.R)
 
 ### scRNA-seq Analysis Pipeline
 To use the scRNA-seq analysis pipeline you have to download the sequencing data deposited in the GEO depository with the accession number of (ADD ACCESSION NUMBER). Afterwards, proceed to run the following scripts. 
