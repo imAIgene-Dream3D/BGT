@@ -85,6 +85,8 @@ Please note that you either need to run all parts of the analysis one after the 
 ### Online UCSC Browser
 Link to [online UCSC browser](https://cells.ucsc.edu/?ds=behavior-guided-tx) to see how to use it go to [this page](https://cellbrowser.readthedocs.io/en/master/interface.html) 
 <img src="https://cellbrowser.readthedocs.io/en/master/_images/cellbrowser-BasicUiFeatures.converted.jpg" width="70%">
+
+
 Currently you can view it by :
 - Cell
 - Oganoid
