@@ -82,7 +82,17 @@ Please note that you either need to run all parts of the analysis one after the 
 
 - [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Farid, put here your part and links to code uploaded in the scripts folder)
 ## Further Reading and Documentation
-
+### Online UCSC Browser
+Link to [online UCSC browser](https://cells.ucsc.edu/?ds=behavior-guided-tx) to see how to use it go to [this page](https://cellbrowser.readthedocs.io/en/master/interface.html) 
+<img src="https://cellbrowser.readthedocs.io/en/master/_images/cellbrowser-BasicUiFeatures.converted.jpg" width="70%">
+Currently you can view it by :
+- Cell
+- Oganoid
+- Experiment
+- Plate
+- Pseudotime
+- Experimental Condition
+- PT Cluster
 - [//]: # (Commented instructions: If there's further documentation, such as a wiki, or publications related to the extended features, provide links here.)
 
 
