@@ -46,9 +46,44 @@ Please note that you either need to run all parts of the analysis one after the 
 
 - [//]: # (Commented instructions: Mention any new software, hardware, or other system requirements that are specific to the extended pipeline.)
 
-## Installation of New Features
+## Installations
 
-- [//]: # (Commented instructions: Outline the steps for installing new components of the extended pipeline, including any additional libraries or dependencies.)
+BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
+
+| Package        | Version |
+|----------------|---------|
+| abind          | 1.4-5   |
+| dplyr          | 1.1.4   |
+| dtwclust       | 5.5.12  |
+| fs             | 1.6.3   |
+| future         | 1.33.1  |
+| furrr          | 0.3.1   |
+| ggplot2        | 3.4.4   |
+| gplots         | 3.1.3   |
+| MESS           | 0.5.9   |
+| optparse       | 1.7.3   |
+| parallel       | 4.3.0   |
+| patchwork      | 1.2.0   |
+| pheatmap       | 1.0.12  |
+| plyr           | 1.8.8   |
+| randomForest   | 4.7-1.1 |
+| readr          | 2.1.4   |
+| reshape2       | 1.4.4   |
+| scales         | 1.3.0   |
+| Seurat         | 5.0.1   |
+| SeuratObject   | 5.0.1   |
+| spatstat       | 3.0-6   |
+| sp             | 1.6-1   |
+| stats          | 4.3.0   |
+| tibble         | 3.2.1   |
+| tidyr          | 1.3.0   |
+| tidyverse      | 2.0.0   |
+| umap           | 0.2.10.0|
+| viridis        | 0.6.4   |
+| viridisLite    | 0.4.2   |
+| xlsx           | 0.6.5   |
+| yaml           | 2.3.8   |
+| zoo            | 1.8-12  |
 
 ## Input Data for Extended Features
 
