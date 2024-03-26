@@ -92,7 +92,7 @@ BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
 | zoo            | 1.8-12  |
 
 
-## Example Datasets for Extended Features
+## Datasets 
 
 In this repository we provide example datasets consisting of a multispectral time-lapse 3D imaging dataset originated from a co-culture of engeneered T cells and Tumor derived organoids from the BEHAV3D original paper. Multispectral imaging allows to identify: Live/dead T cells; Live/Dead organoids. For downstream analysis of organoids: Either individual tumor derived organoids are tracked overtime or the total organoid volume per well is tracked. For each generated object we acquire information on the dead cell dye intensity and position and volume of individual organoids. For downstream analysis of T cell: T cells are tracked overtime. For each Tracked T cell object we aquire, position per timepoint, speed, square displacement, distance to an organoid, dead dye intensity, major and minor axis length (used in some downstream analysis).
 
@@ -125,11 +125,46 @@ This sets up the paths in the BEHAV3D config file for the demo, then run the dif
 
 - [//]: # (Commented instructions: If you have created demos to showcase the new features, provide instructions on how users can run these demos.)
 
-## Extended Modules
+##  Modules
 
 ### [Identification of Seperation Time]
+Incorporating the details from the provided config template, the GitHub documentation for the "Timepoint Graph" module can be structured as follows:
 
-- [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates.)
+---
+
+## Modules
+
+### (1) Timepoint Graph Module
+
+This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points.
+
+#### Configuration
+Before running the module, ensure the config file (`config_template.yml`) is correctly set up with your specific parameters, including:
+- `classified_tcell_track_data_filepath_rds`: Path to the classified T cell track data file.
+- `imaging_time`: Time (in hours) when imaging starts in the experiment; this module will focus on time points after this.
+
+***To run from the command line:***
+```bash
+Rscript /path/to/TimepointGraph/timepoint_graph.R -c </Path/to/BGT/config_template.yml> -f
+```
+The `-f` flag forces the re-import and processing of data even if the output files already exist. Optionally, use `-t` to specify an RDS file containing processed T-cell track data, if not already included in the BGT config.
+
+***To run from RStudio:***
+
+**Step 1:** For a demo run, use the [timepoint_graph script](/scripts/TimepointGraph/timepoint_graph.R). Adjust the path to your **BGT config** on [line 18](/scripts/TimepointGraph/timepoint_graph.R#L18) if you're using a different data folder or config file.
+
+***Output Files***
+
+Outputs are saved in the specified `output_dir` within the `Results/Seperation_time_graph/` directory:
+- **T-cell_engagementVsTime.png**: Visualization of the percentage of T cells in cluster 9 (super-engagers) over time.
+- **T-cell_engagementVsTime.csv**: Raw data file containing the time points and percentages of T cells in cluster 9, ready for further analysis.
+
+#### Key Features
+- **Temporal Dynamics Insight**: The module reveals critical engagement dynamics, identifying when super-engager T cells are most prevalent.
+- **Cluster 9 Focus**: By concentrating on cluster 9, it provides an in-depth look at the behavior of T cells demonstrating high engagement levels.
+- **CD4 vs. CD8 Comparison**: Offers valuable insights into distinct engagement patterns between CD4 and CD8 T cells, enhancing the understanding of immune mechanisms.
+
+For additional analysis or adjustments to visualization parameters, consult the [script](/scripts/TimepointGraph/timepoint_graph.R). This might include altering smoothing functions or the analysis time window, depending on the specifics of your experimental setup.
 
 ### [Population Seperation Simulation]
 
