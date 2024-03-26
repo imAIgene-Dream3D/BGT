@@ -126,7 +126,7 @@ This sets up the paths in the BEHAV3D config file for the demo, then run the dif
 - [//]: # (Commented instructions: If you have created demos to showcase the new features, provide instructions on how users can run these demos.)
 
 ##  Modules
-----
+
 ### (1) Timepoint Graph Module
 
 This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points.
@@ -159,21 +159,92 @@ Outputs are saved in the specified `output_dir` within the `Results/Seperation_t
 
 For additional analysis or adjustments to visualization parameters, consult the [script](/scripts/TimepointGraph/timepoint_graph.R). This might include altering smoothing functions or the analysis time window, depending on the specifics of your experimental setup.
 
-### [Population Seperation Simulation]
+----
 
-- [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates.)
+### (2) Population Separation Simulation Module
 
-### [scRNAseq data preprocessing]
+This module simulates T-cell population separation into engagers and non-engagers over multiple time points, providing insights into T-cell dynamics in a co-culture environment. It utilizes user-defined parameters from the configuration file to analyze and visualize the engagement behavior of CD4 and CD8 T-cells.
+
+#### Configuration
+Set up the `config_template.yml` with the necessary parameters for this module, including:
+- `n_timepoints`: The number of separation time points to include in the simulation.
+- `first_timepoint_interval_starts` and `first_timepoint_interval_ends`: The starting and ending minutes of the first time interval for separation.
+- `reoccuring_time`: Time difference (in minutes) for subsequent time intervals.
+
+***To run from the command line:***
+```bash
+Rscript /path/to/PopulationSeparationSimulation/population_separation_simulation.R -c </Path/to/BGT/config_template.yml> -f
+```
+Use the `-f` flag to force re-import and processing of data if output files already exist. The `-t` option allows specifying an RDS file with processed T-cell track data, if not included in the BGT config.
+
+***To run from RStudio:***
+
+**Step 2:** For a demo, navigate to the [population_separation_simulation script](/scripts/PopulationSeparationSimulation/population_separation_simulation.R). Adjust the **BGT config** file path on [line 18](/scripts/PopulationSeparationSimulation/population_separation_simulation.R#L18) if working with new data in a different folder.
+
+***Output Files***
+
+Generated outputs in the `Results/Population_seperation_simulation/` directory include:
+- Plots for CD8 and CD4 T-cell engagement at specified intervals, indicating the percentage of cells in different clusters.
+  - `plot_cd8_timepoint_X.png` and `plot_cd4_timepoint_X.png` where X denotes the specific time interval.
+- CSV files detailing the engagement frequency analysis for CD8 and CD4 T-cells:
+  - `CD8_engagement_behavior_freq.csv` and `CD4_engagement_behavior_freq.csv`, providing a quantitative measure of T-cell engagement over time.
+
+#### Key Features
+- **Dynamic Analysis**: Enables a comprehensive view of T-cell behavior across several time points, facilitating the understanding of engagement dynamics.
+- **Flexible Time Points**: Leverages user-defined intervals to tailor the analysis to specific experimental setups, enhancing relevance to your research.
+- **Detailed Visualization**: Offers clear, visual representations of T-cell engagement, aiding in the identification of patterns and trends in cellular behavior.
+
+Adjustments to the analysis parameters or visualization aspects can be made by modifying the [script](/scripts/PopulationSeparationSimulation/population_separation_simulation.R) or the config file, depending on the specifics of the experimental design or analysis goals.
+
+----
+
+### (3) scRNAseq data preprocessing
 
 - [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Peter, put here your part and links to code uploaded in the scripts folder)
 
-### [Pseudotime trajectory inference]
+### (4) Pseudotime trajectory inference
 
 - [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Farid, put here your part and links to code uploaded in the scripts folder)
 
-### [Behavioral Guided Transcriptomics]
+### (5) Behavioral Guided Transcriptomics
+Integrating the details from the provided config template and the script for the "Behavioral Guided Transcriptomics" module, here’s a structured README section suitable for GitHub documentation:
 
-- [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Farid, put here your part and links to code uploaded in the scripts folder)
+---
+
+### (3) Behavioral Guided Transcriptomics Module
+
+This module integrates behavioral signatures derived from T-cell engagement analysis with scRNA-seq data to explore the transcriptomic landscape associated with different T-cell behaviors. It constructs a behavioral probability map across the scRNA-seq dataset and examines how cellular states correlate with T-cell function and response in a co-culture environment.
+
+#### Configuration
+Ensure the `config_template.yml` is correctly configured for this module:
+- `scRNA_seq_dataset`: Path to the single-cell RNA sequencing dataset file.
+- Other parameters relevant to this module are set directly within the script or derived from the behavioral analysis outputs.
+
+***To run from the command line:***
+```bash
+Rscript /path/to/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R -c </Path/to/BGT/config_template.yml> -f
+```
+Use `-f` to force re-import and processing of data if output files already exist. Optionally, `-t` can specify an RDS file with processed T-cell track data not included in the BGT config.
+
+***To run from RStudio:***
+
+**Step 3:** For demonstration purposes, utilize the [behavioral_guided_transcriptomics script](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R). If using new data or a different configuration, update the **BGT config** file path on [line 18](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R#L18).
+
+***Output Files***
+
+The module outputs include:
+- UMAP plots illustrating the distribution of behavioral signatures across the scRNA-seq dataset.
+- Probability maps and CSV files detailing the behavioral signature composition for each analyzed cluster.
+- Heatmaps and PDFs visualizing the transition of T-cell behaviors along the pseudotime trajectory.
+
+Outputs are stored in `Results/Behavioral_guided_transcriptomics/` and its subdirectories.
+
+#### Key Features
+- **Behavioral Signature Mapping**: Elucidates the transcriptomic underpinnings of T-cell behaviors, offering a nuanced view of immune cell dynamics.
+- **Probability Maps**: Constructs detailed maps showing the likelihood of each cell belonging to different behavioral categories, enabling a deep dive into cellular function and heterogeneity.
+- **Pseudotime Analysis**: Integrates pseudotime analysis to explore the evolution of T-cell states and behaviors over time, revealing insights into cellular progression and differentiation in response to tumor exposure.
+
+For modifications or further analysis, refer to the [script](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R) and adjust parameters or visualization settings as needed based on your specific research questions or experimental design.
 
 
 ## Further Reading and Documentation
