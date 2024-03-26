@@ -161,7 +161,7 @@ For additional analysis or adjustments to visualization parameters, consult the 
 
 ----
 
-### (2) Population Separation Simulation Module
+### (2) Population separation simulation module
 
 This module simulates T-cell population separation into engagers and non-engagers over multiple time points, providing insights into T-cell dynamics in a co-culture environment. It utilizes user-defined parameters from the configuration file to analyze and visualize the engagement behavior of CD4 and CD8 T-cells.
 
@@ -206,12 +206,9 @@ Adjustments to the analysis parameters or visualization aspects can be made by m
 
 - [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Farid, put here your part and links to code uploaded in the scripts folder)
 
-### (5) Behavioral Guided Transcriptomics
-Integrating the details from the provided config template and the script for the "Behavioral Guided Transcriptomics" module, here’s a structured README section suitable for GitHub documentation:
+----
 
----
-
-### (3) Behavioral Guided Transcriptomics Module
+### (5) Behavioral probability mapping module
 
 This module integrates behavioral signatures derived from T-cell engagement analysis with scRNA-seq data to explore the transcriptomic landscape associated with different T-cell behaviors. It constructs a behavioral probability map across the scRNA-seq dataset and examines how cellular states correlate with T-cell function and response in a co-culture environment.
 
@@ -228,7 +225,7 @@ Use `-f` to force re-import and processing of data if output files already exist
 
 ***To run from RStudio:***
 
-**Step 3:** For demonstration purposes, utilize the [behavioral_guided_transcriptomics script](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R). If using new data or a different configuration, update the **BGT config** file path on [line 18](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R#L18).
+**Step 3:** For demonstration purposes, utilize the [Behavioral probability mapping script](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R). If using new data or a different configuration, update the **BGT config** file path on [line 18](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R#L18).
 
 ***Output Files***
 
