@@ -127,7 +127,7 @@ This sets up the paths in the BEHAV3D config file for the demo, then run the dif
 
 ##  Modules
 
-### (1) T cell behavioral dynamics over time
+### (1) T cell behavioral dynamics module
 
 This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points.
 
@@ -144,7 +144,7 @@ The `-f` flag forces the re-import and processing of data even if the output fil
 
 ***To run from RStudio:***
 
-**Step 1:** For a demo run, use the [T cell behavioral dynamics over time](/scripts/TimepointGraph/timepoint_graph.R). Adjust the path to your **BGT config** on [line 18](/scripts/TimepointGraph/timepoint_graph.R#L18) if you're using a different data folder or config file.
+**Step 1:** For a demo run, use the [T cell behavioral dynamics](/scripts/TimepointGraph/timepoint_graph.R). Adjust the path to your **BGT config** on [line 18](/scripts/TimepointGraph/timepoint_graph.R#L18) if you're using a different data folder or config file.
 
 ***Output Files***
 
