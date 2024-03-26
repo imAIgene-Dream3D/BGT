@@ -126,14 +126,7 @@ This sets up the paths in the BEHAV3D config file for the demo, then run the dif
 - [//]: # (Commented instructions: If you have created demos to showcase the new features, provide instructions on how users can run these demos.)
 
 ##  Modules
-
-### [Identification of Seperation Time]
-Incorporating the details from the provided config template, the GitHub documentation for the "Timepoint Graph" module can be structured as follows:
-
----
-
-## Modules
-
+----
 ### (1) Timepoint Graph Module
 
 This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points.
