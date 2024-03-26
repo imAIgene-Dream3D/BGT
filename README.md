@@ -15,11 +15,11 @@ This data is obtained from running SORT seq on T cells incubated with tumor orga
 
 ## Scripts
 
-[Timepoint graph generation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R)
+[T cell behavioral dynamics over time](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R)
 To determine the optimal time-point for the separation of highly engaging T cells, execute a dynamic graphical analysis focusing on a specified cluster of interest. This cluster is indicative of highly engaged T cells, often referred to as super-engagers. This analysis marks the time window during which the super-engager population is most discernible, aiding in the accurate prediction of the timepoint for T cell separation. The classified_tcell_track_data.rds file, encompassing the classified behavioral data for T cells, alongside the determined starting point of imaging (imaging time), are critical inputs for this analysis. These parameters should be incorporated into the provided BGT_config template within the simulation settings section. It is imperative that these are accurate and representative of your specific experimental setup.
 
 [Population_seperation simulation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
-Utilize population_seperation_simulation for analyzing the frequency and distribution of T-cell behavior over time in simulated co-culture environment. L
+Utilize population_seperation_simulation for analyzing the frequency and distribution of T-cell behavior over time in simulated co-culture environment. 
 
 ### scRNA-seq Analysis Pipeline
 To use the scRNA-seq analysis pipeline you have to download the sequencing data deposited in the GEO depository with the accession number of (ADD ACCESSION NUMBER). Afterwards, proceed to run the following scripts. 
@@ -127,7 +127,7 @@ This sets up the paths in the BEHAV3D config file for the demo, then run the dif
 
 ##  Modules
 
-### (1) Timepoint Graph Module
+### (1) T cell behavioral dynamics over time
 
 This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points.
 
@@ -144,7 +144,7 @@ The `-f` flag forces the re-import and processing of data even if the output fil
 
 ***To run from RStudio:***
 
-**Step 1:** For a demo run, use the [timepoint_graph script](/scripts/TimepointGraph/timepoint_graph.R). Adjust the path to your **BGT config** on [line 18](/scripts/TimepointGraph/timepoint_graph.R#L18) if you're using a different data folder or config file.
+**Step 1:** For a demo run, use the [T cell behavioral dynamics over time](/scripts/TimepointGraph/timepoint_graph.R). Adjust the path to your **BGT config** on [line 18](/scripts/TimepointGraph/timepoint_graph.R#L18) if you're using a different data folder or config file.
 
 ***Output Files***
 
