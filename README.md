@@ -123,8 +123,19 @@ Outputs are saved in the specified `output_dir` within the `Results/Seperation_t
 For additional analysis or adjustments to visualization parameters, consult the [script](/scripts/TimepointGraph/timepoint_graph.R). This might include altering smoothing functions or the analysis time window, depending on the specifics of your experimental setup.
 
 ----
+### (2) scRNAseq data preprocessing
+This module contains scripts to process and analyze single cell sequencing data of T cells.
+To test this pipeline you can either use the provided demos datasets or download an example sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). 
+This module is structured in the following way:
+1. [Pre-processing of raw SORTseq data (QC, filtering)](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)
+2. [Subset Identification](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)
+3. [Pseudotime Analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)
+4. [Dynamic Gene Clustering](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)
+5. [Comparison to In vivo Data](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)
 
-### (2)  Population separation in silico simulation  
+----
+
+### (3)  Population separation in silico simulation  
 
 [This module](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R) simulates T-cell population separation into engagers and non-engagers over multiple time points, providing insights into T-cell dynamics in a co-culture environment. It utilizes user-defined parameters from the configuration file to analyze and visualize the engagement behavior of CD4 and CD8 T-cells.
 
@@ -158,18 +169,6 @@ Generated outputs in the `Results/Population_seperation_simulation/` directory i
 - **Detailed Visualization**: Offers clear, visual representations of T-cell engagement, aiding in the identification of patterns and trends in cellular behavior.
 
 Adjustments to the analysis parameters or visualization aspects can be made by modifying the [script](/scripts/PopulationSeparationSimulation/population_separation_simulation.R) or the config file, depending on the specifics of the experimental design or analysis goals.
-
-----
-
-### (3) scRNAseq data preprocessing
-This module contains scripts to process and analyze single cell sequencing data of T cells.
-To test this pipeline you can either use the provided demos datasets or download an example sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). 
-This module is structured in the following way:
-1. [Pre-processing of raw SORTseq data (QC, filtering)](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)
-2. [Subset Identification](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)
-3. [Pseudotime Analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)
-4. [Dynamic Gene Clustering](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)
-5. [Comparison to In vivo Data](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)
 
 ----
 
