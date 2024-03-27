@@ -9,29 +9,6 @@ This data is obtained by performing multispectral time-lapse imaging of T cells 
 ### Single cell sequencing data from T cells incubated with patient derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
 $${\color{red}Miguel}$$ What is the name of the input file for scRNA seq that we provide as a demo
-## Pipeline explanation
-
-### Evaluation of super-engager population dynamics in co-culture
-[T cell behavioral dynamics over time](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R)
-To determine the optimal time-point for the separation of highly engaging T cells, execute a dynamic graphical analysis focusing on a specified cluster of interest. This cluster is indicative of highly engaged T cells, often referred to as super-engagers. This analysis marks the time window during which the super-engager population is most discernible, aiding in the accurate prediction of the timepoint for T cell separation. The classified_tcell_track_data.rds file, encompassing the classified behavioral data for T cells, alongside the determined starting point of imaging (imaging time), are critical inputs for this analysis. These parameters should be incorporated into the provided BGT_config template within the simulation settings section. It is imperative that these are accurate and representative of your specific experimental setup.
-
-### Population separation in silico simulation   
-[Population_separation simulation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
-Utilize population_seperation_simulation for analyzing the frequency and distribution of T-cell behavior over time in simulated co-culture environment. 
-
-### scRNA-seq Analysis
-To use the scRNA-seq analysis pipeline you have to download the sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). Afterwards, proceed to run the following scripts. 
-Please note that you either need to run all parts of the analysis one after the previous one, or use the intermediate outputs of the previous part of the pipeline by downloading them from Zenodo depository (ADD LINK TO ZENODO).
-1. [Pre-processing of raw SORTseq data (QC, filtering)](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)
-2. [Subset Identification](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)
-3. [Pseudotime Analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)
-4. [Dynamic Gene Clustering](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)
-5. [Comparison to In vivo Data](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)
-
-### Behavioral probability mapping 
-
-[Behavioral Guided Transcriptomics](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Behavioral-guided_transcriptomics.R)
-we perform integrative analysis of scRNA -seq Data with Behavioral Clusters derived from Imaging. Here we utilize myriads of  computational methods to cluster scRNA-seq data, annotate these clusters with behaviorally relevant data, and infer the probabilistic behavioral landscape of individual immune ccells. The goal is to correlate gene expression profiles with phenotypic behavioral patterns to unravel cellular mechanisms in a spatial and temporal context.
 
 ## Extended Software and Hardware Requirements
 As the BGT pipeline is an extended implementation to the BEHAV3D protocol, the input data required to apply it is generated from BEHAV3D pipeline, which has been extensively described [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) 
@@ -113,9 +90,9 @@ This sets up the paths in the BEHAV3D config file for the demo, then run the dif
 
 ##  Modules
 
-### (1) T cell behavioral dynamics module
+### (1) Evaluation of super-engager population dynamics in co-culture
 
-This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points.
+This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points. [This analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R) marks the time window during which the super-engager population is most discernible, aiding in the accurate prediction of the timepoint for T cell separation. The classified_tcell_track_data.rds file, encompassing the classified behavioral data for T cells, alongside the determined starting point of imaging (imaging time), are critical inputs for this analysis. These parameters should be incorporated into the provided BGT_config template within the simulation settings section. It is imperative that these are accurate and representative of your specific experimental setup.
 
 #### Configuration
 Before running the module, ensure the config file (`config_template.yml`) is correctly set up with your specific parameters, including:
@@ -147,9 +124,9 @@ For additional analysis or adjustments to visualization parameters, consult the 
 
 ----
 
-### (2) Population separation simulation module
+### (2)  Population separation in silico simulation  
 
-This module simulates T-cell population separation into engagers and non-engagers over multiple time points, providing insights into T-cell dynamics in a co-culture environment. It utilizes user-defined parameters from the configuration file to analyze and visualize the engagement behavior of CD4 and CD8 T-cells.
+[This module](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R) simulates T-cell population separation into engagers and non-engagers over multiple time points, providing insights into T-cell dynamics in a co-culture environment. It utilizes user-defined parameters from the configuration file to analyze and visualize the engagement behavior of CD4 and CD8 T-cells.
 
 #### Configuration
 Set up the `config_template.yml` with the necessary parameters for this module, including:
@@ -185,18 +162,22 @@ Adjustments to the analysis parameters or visualization aspects can be made by m
 ----
 
 ### (3) scRNAseq data preprocessing
-
-- [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Peter, put here your part and links to code uploaded in the scripts folder)
-
-### (4) Pseudotime trajectory inference
-
-- [//]: # (Commented instructions: Provide a brief description of each new module, how to run it, and what outputs it generates. @Farid, put here your part and links to code uploaded in the scripts folder)
+This module contains scripts to process and analyze single cell sequencing data of T cells.
+To test this pipeline you can either use the provided demos datasets or download an example sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). 
+This module is structured in the following way:
+1. [Pre-processing of raw SORTseq data (QC, filtering)](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)
+2. [Subset Identification](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)
+3. [Pseudotime Analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)
+4. [Dynamic Gene Clustering](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)
+5. [Comparison to In vivo Data](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)
 
 ----
 
-### (5) Behavioral probability mapping module
+### (4) Behavioral probability mapping module
 
-This module integrates behavioral signatures derived from T-cell engagement analysis with scRNA-seq data to explore the transcriptomic landscape associated with different T-cell behaviors. It constructs a behavioral probability map across the scRNA-seq dataset and examines how cellular states correlate with T-cell function and response in a co-culture environment.
+This module uses the principle of probability transitivity to infer for each sequenced T cell a probability to belonging to a particular T cell beahvioral class.  
+[Behavioral probability mapping module](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Behavioral-guided_transcriptomics.R) uses as input processes Seurat object from scRNA analysis module along with Tcell_engagement_behavior_freq.csv from the  Population separation in silico simulation module.
+
 
 #### Configuration
 Ensure the `config_template.yml` is correctly configured for this module:
@@ -230,11 +211,9 @@ Outputs are stored in `Results/Behavioral_guided_transcriptomics/` and its subdi
 For modifications or further analysis, refer to the [script](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R) and adjust parameters or visualization settings as needed based on your specific research questions or experimental design.
 
 
-## Further Reading and Documentation
-### Online UCSC Browser
-Link to [online UCSC browser](https://cells.ucsc.edu/?ds=behavior-guided-tx) to see how to use it go to [this page](https://cellbrowser.readthedocs.io/en/master/interface.html) 
+## Example output dataset
+To enable users to delve into an illustrative dataset generated with BGT, we offer an example showcasing CD8+ TEGs co-cultured with Breast Cancer Organoids, accessible via an [online UCSC browser](https://cells.ucsc.edu/?ds=behavior-guided-tx). For information on how to use it go to [this page](https://cellbrowser.readthedocs.io/en/master/interface.html) 
 <img src="https://cellbrowser.readthedocs.io/en/master/_images/cellbrowser-BasicUiFeatures.converted.jpg" width="70%">
-
 
 Currently you can view it by :
 - Cell
