@@ -1,28 +1,26 @@
 # Behavioral Guided Transcriptomics (BGT) Pipeline
 
-This README is part of the extended BGT pipeline documentation, which builds upon the initial [BEHAV3D repository](https://github.com/AlievaRios/BEHAV3D). BEHAV3D is a multispectral imaging and analytical pipeline to 1) classify T cell based on behavior; 2) study tumor/organoid death dynamics; 3) backprojecting identified behavior in the imaging dataset. This pipeline runs with the output of [BEHAV3D T cell classification module](https://github.com/AlievaRios/BEHAV3D?tab=readme-ov-file#2-t-cell-behavior-classification-module)  and includes additional features able to integrate this phenotypic T cell behavioral information wiht single cell transcriptomics of T cells. 
-
-## Overview
-
-The BGT introduces new functionalities that integrates imaging and transcriptomic data, allowing for a more comprehensive analysis of the molecular drivers of immune cells behavior upon tumor organoid targeting. 
+BGT is an imaging-guided transcriptomic experimental and analytical pipeline for co-cultures of Patient Derived Organoides with (engeneered) T cells described in [Dekkers&Alieva et al Nat. Biotech (2022)](https://www.nature.com/articles/s41587-022-01397-w). This repository compiles the analytical procedures required to integrate data from single-cell RNA sequencing of T cells with single-cell imaging data, providing for each sequenced cell probabilities of exhibiting different functional behaviors.
 
 ## Input data
 
-### Dataset of classified T cells based on behavior. 
-This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) and our detailed Protocol to obtain this data[link to NaPo BEHAV3D] 
-### single cell sequencing data from T cells incubated with tumor organoids
+### Imaging-derived dataset of behavior-classified T cells. 
+This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) $${\color{red}Avi}$$ what is the name of the file that is the output of BEHAV3D and input in BGT, has to be the same name
+### Single cell sequencing data from T cells incubated with patient derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
+$${\color{red}Miguel}$$ What is the name of the input file for scRNA seq that we provide as a demo
+## Pipeline explanation
 
-## Scripts
-
+### Evaluation of super-engager population dynamics in co-culture
 [T cell behavioral dynamics over time](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R)
 To determine the optimal time-point for the separation of highly engaging T cells, execute a dynamic graphical analysis focusing on a specified cluster of interest. This cluster is indicative of highly engaged T cells, often referred to as super-engagers. This analysis marks the time window during which the super-engager population is most discernible, aiding in the accurate prediction of the timepoint for T cell separation. The classified_tcell_track_data.rds file, encompassing the classified behavioral data for T cells, alongside the determined starting point of imaging (imaging time), are critical inputs for this analysis. These parameters should be incorporated into the provided BGT_config template within the simulation settings section. It is imperative that these are accurate and representative of your specific experimental setup.
 
-[Population_seperation simulation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
+### Population separation in silico simulation   
+[Population_separation simulation](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Mutiple_timepoint_population_seperation_simulation.R)
 Utilize population_seperation_simulation for analyzing the frequency and distribution of T-cell behavior over time in simulated co-culture environment. 
 
-### scRNA-seq Analysis Pipeline
-To use the scRNA-seq analysis pipeline you have to download the sequencing data deposited in the GEO depository with the accession number of (ADD ACCESSION NUMBER). Afterwards, proceed to run the following scripts. 
+### scRNA-seq Analysis
+To use the scRNA-seq analysis pipeline you have to download the sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). Afterwards, proceed to run the following scripts. 
 Please note that you either need to run all parts of the analysis one after the previous one, or use the intermediate outputs of the previous part of the pipeline by downloading them from Zenodo depository (ADD LINK TO ZENODO).
 1. [Pre-processing of raw SORTseq data (QC, filtering)](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)
 2. [Subset Identification](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)
@@ -30,30 +28,20 @@ Please note that you either need to run all parts of the analysis one after the 
 4. [Dynamic Gene Clustering](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)
 5. [Comparison to In vivo Data](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)
 
+### Behavioral probability mapping 
+
 [Behavioral Guided Transcriptomics](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Behavioral-guided_transcriptomics.R)
 we perform integrative analysis of scRNA -seq Data with Behavioral Clusters derived from Imaging. Here we utilize myriads of  computational methods to cluster scRNA-seq data, annotate these clusters with behaviorally relevant data, and infer the probabilistic behavioral landscape of individual immune ccells. The goal is to correlate gene expression profiles with phenotypic behavioral patterns to unravel cellular mechanisms in a spatial and temporal context.
 
-### What additional types of data does the extended BEHAV3D work with?
-1. Classified T cell Track Data (.rds) file
-2. CD8/CD4 Engagement frequency (.csv) file
-3. single cell Sequencing data
-
-- [//]: # (Commented instructions: Describe any new data types that the extended pipeline can process, such as additional imaging modalities or integration with other types of 'omics' data.)
-
-### What additional outputs does the extended BEHAV3D provide?
-1. Classified T cell Track Data (.rds) file
-- [//]: # (Commented instructions: List new outputs that the extended pipeline will generate, such as advanced visualizations, integration with genomic data, etc.)
-
-
 ## Extended Software and Hardware Requirements
-As the BGT pipeline is an extended implementation to the BEHAV3D protocol, the input data required to apply it is generated from BEHAV3D pipeline, which has been extensively described [REF NP BEHAV3D]. 
+As the BGT pipeline is an extended implementation to the BEHAV3D protocol, the input data required to apply it is generated from BEHAV3D pipeline, which has been extensively described [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) 
 BEHAV3D demands high-end workstations (RAM 64GB, CPU 3.7 HZ or more with at least 8 cores, GPU with 16GB VRAM or more) for data processing with Imaris ensuring analysis efficiency. For applying the BGT data analysis pipeline, a general workstation will be sufficient. 
 In terms of user expertise, a basic understanding of R programming is required to run the data analysis pipeline.
 
 - [//]: # (Commented instructions: Mention any new software, hardware, or other system requirements that are specific to the extended pipeline.)
 
-## Installations
-
+## Installations 
+$${\color{red}Avi/and/Miguel}$$ we need to have an integrated version for installation of all the packages related to both parts. and ideally provide a docker image with the package for both parts
 BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
 
 | Package        | Version |
@@ -92,23 +80,21 @@ BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
 | zoo            | 1.8-12  |
 
 
-## Datasets 
+## Demo and intermediate files 
 
-In this repository we provide example datasets consisting of a multispectral time-lapse 3D imaging dataset originated from a co-culture of engeneered T cells and Tumor derived organoids from the BEHAV3D original paper. Multispectral imaging allows to identify: Live/dead T cells; Live/Dead organoids. For downstream analysis of organoids: Either individual tumor derived organoids are tracked overtime or the total organoid volume per well is tracked. For each generated object we acquire information on the dead cell dye intensity and position and volume of individual organoids. For downstream analysis of T cell: T cells are tracked overtime. For each Tracked T cell object we aquire, position per timepoint, speed, square displacement, distance to an organoid, dead dye intensity, major and minor axis length (used in some downstream analysis).
-
-- [//]: # (Commented instructions: If applicable, provide links to example datasets that are specifically used for demonstrating the new features of the extended pipeline.)
+In this repository we provide example datasets as well as intermediate files to run the different steps of the pipeline:
+$${\color{red}Avi/and/Miguel}$$ 
+- [//]: # (Commented instructions: list here the datasets that are provided in the demo folder including also the intermediary datasets that have.)
 
 ## Repository Structure 
 This repository contains a collection of scripts and example datasets enabling the following dowstream analysis. Follow the structure in the script folder for each module and each analysis type. Introduce the corresponding folder/ file direction on your own computer where required (note that to specify directory paths in R (/) forward slash is recommended):
 
-- [//]: # (Commented instructions: Describe the organization of the repository, including where users can find scripts, configurations, and data related to the new features.)
-
 ## Set-up 
-BEHAV3D uses 2 specific fiels to customize the analysis:\
+BGT uses 2 specific fiels to customize the analysis:\
 
-BEHAV3D config
+BGT_config
 Contains all experiment-specific settings and paths to data for all modules in BGT
-An example version can be found in ...BGT/configs/config_template.yml
+An example version can be found in ...BGT/configs/BGT_config_template.yml
 Explanation on what each variable changes is commented in that template
 
 - [//]: # (Commented instructions: Detail any additional setup or configuration steps required to use the new features.)
