@@ -9,6 +9,7 @@ This data is obtained by performing multispectral time-lapse imaging of T cells 
 ### Single cell sequencing data from T cells incubated with patient derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
 $${\color{red}Miguel}$$ What is the name of the input file for scRNA seq that we provide as a demo
+The scRNA seq file we provide for the demo is 10T_master.rds 
 
 ## Extended Software and Hardware Requirements
 As the BGT pipeline is an extended implementation to the BEHAV3D protocol, the input data required to apply it is generated from BEHAV3D pipeline, which has been extensively described [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) 
@@ -56,12 +57,69 @@ BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
 | yaml           | 2.3.8   |
 | zoo            | 1.8-12  |
 
+packages for scRNA seq
+
+| Package           | Version  |
+|-------------------|----------|
+| BiocManager       | 3.18     |
+| devtools          | (latest) |
+| monocle3          | (latest) |
+| abind             | 1.4-5    |
+| dplyr             | 1.1.4    |
+| dtwclust          | 5.5.12   |
+| fs                | 1.6.3    |
+| future            | 1.33.1   |
+| furrr             | 0.3.1    |
+| ggplot2           | 3.4.4    |
+| gplots            | 3.1.3    |
+| MESS              | 0.5.9    |
+| optparse          | 1.7.3    |
+| parallel          | 4.3.0    |
+| patchwork         | 1.2.0    |
+| pheatmap          | 1.0.12   |
+| plyr              | 1.8.8    |
+| randomForest      | 4.7-1.1  |
+| readr             | 2.1.4    |
+| reshape2          | 1.4.4    |
+| scales            | 1.3.0    |
+| Seurat            | 5.0.1    |
+| SeuratObject      | 5.0.1    |
+| spatstat          | 3.0-6    |
+| sp                | 1.6-1    |
+| stats             | 4.3.0    |
+| tibble            | 3.2.1    |
+| tidyr             | 1.3.0    |
+| tidyverse         | 2.0.0    |
+| umap              | 0.2.10.0 |
+| viridis           | 0.6.4    |
+| viridisLite       | 0.4.2    |
+| xlsx              | 0.6.5    |
+| yaml              | 2.3.8    |
+| zoo               | 1.8-12   |
+| ggthemes          | (latest) |
+| gridExtra         | (latest) |
+| openxlsx          | (latest) |
+
+
+
 
 ## Demo and intermediate files 
 
 In this repository we provide example datasets as well as intermediate files to run the different steps of the pipeline:
 $${\color{red}Avi/and/Miguel}$$ 
 - [//]: # (Commented instructions: list here the datasets that are provided in the demo folder including also the intermediary datasets that have.)
+
+RNAseq
+- 10T_master.rds
+- All_TEGs_MNN_Seurat.rds
+- CD4_IL17RBNeg_Dynamic_Genes.rds
+- CD4_IL17RBNeg_MNN_Seurat.rds
+- CD4_IL17RBPos_Dynamic_Genes.rds
+- CD4_IL17RBPos_MNN_Seurat.rds
+- CD8_Dynamic_Genes.rds
+- CD8_MNN_Seurat.rds
+- Savas_CD8_Trm_MarkerGenes.rds
+intermediate demo objects to test the pipeline partially or full
 
 ## Repository Structure 
 This repository contains a collection of scripts and example datasets enabling the following dowstream analysis. Follow the structure in the script folder for each module and each analysis type. Introduce the corresponding folder/ file direction on your own computer where required (note that to specify directory paths in R (/) forward slash is recommended):
