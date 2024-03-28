@@ -77,7 +77,7 @@ savas = subset(savas, features=genes.keep)
 
 ```{r}
 # Remove non-coding genes
-genes = read.table("helper_files/genes.gtf", sep="\t") # download the genes from the ensembl page or use provided
+genes = read.table("helper_files/genes.gtf", sep="\t") # download the genes from the ensembl page or use provided https://ftp.ensembl.org/pub/release-111/gtf/homo_sapiens/
 genes = genes[genes$V3 == "gene", ]
 df_genes = data.frame(gene_id = unlist(strsplit(genes$V9, ";| "))[c(F,T,F,F,F,F,F,F,F,F,F,F,F,F)],
                       gene_name = unlist(strsplit(genes$V9, ";| "))[c(F,F,F,F,F,F,F,T,F,F,F,F,F,F)],
