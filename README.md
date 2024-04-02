@@ -63,12 +63,11 @@ BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
 | devtools       | (latest) |
 | monocle3       | (latest) |
 
-**Note:** For packages listed with "(latest)" as their version, you should install the most recent version available at the time of installation. This can be done using the `install.packages()` function for CRAN packages and the `BiocManager::install()` function for Bioconductor packages, without specifying a version number.
+**Note:** For packages listed with '(latest)' as their version, the user should install the most recent version available at the time of installation. This can be done using the `install.packages()` function for CRAN packages and the `BiocManager::install()` function for Bioconductor packages, without specifying a version number.
 
 ## Demo and intermediate files 
 
 In this repository we provide example datasets as well as intermediate files to run the different steps of the pipeline:
-$${\color{red}Miguel}$$ 
 - [//]: # (Commented instructions: list here the datasets that are provided in the demo folder including also the intermediary datasets that have.)
 
 RNAseq
