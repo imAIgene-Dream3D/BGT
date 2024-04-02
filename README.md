@@ -22,86 +22,48 @@ In terms of user expertise, a basic understanding of R programming is required t
 $${\color{red}Avi/and/Miguel}$$ we need to have an integrated version for installation of all the packages related to both parts. and ideally provide a docker image with the package for both parts
 BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
 
-| Package        | Version |
-|----------------|---------|
-| abind          | 1.4-5   |
-| dplyr          | 1.1.4   |
-| dtwclust       | 5.5.12  |
-| fs             | 1.6.3   |
-| future         | 1.33.1  |
-| furrr          | 0.3.1   |
-| ggplot2        | 3.4.4   |
-| gplots         | 3.1.3   |
-| MESS           | 0.5.9   |
-| optparse       | 1.7.3   |
-| parallel       | 4.3.0   |
-| patchwork      | 1.2.0   |
-| pheatmap       | 1.0.12  |
-| plyr           | 1.8.8   |
-| randomForest   | 4.7-1.1 |
-| readr          | 2.1.4   |
-| reshape2       | 1.4.4   |
-| scales         | 1.3.0   |
-| Seurat         | 5.0.1   |
-| SeuratObject   | 5.0.1   |
-| spatstat       | 3.0-6   |
-| sp             | 1.6-1   |
-| stats          | 4.3.0   |
-| tibble         | 3.2.1   |
-| tidyr          | 1.3.0   |
-| tidyverse      | 2.0.0   |
-| umap           | 0.2.10.0|
-| viridis        | 0.6.4   |
-| viridisLite    | 0.4.2   |
-| xlsx           | 0.6.5   |
-| yaml           | 2.3.8   |
-| zoo            | 1.8-12  |
+| Package        | Version  |
+|----------------|----------|
+| abind          | 1.4-5    |
+| dplyr          | 1.1.4    |
+| dtwclust       | 5.5.12   |
+| fs             | 1.6.3    |
+| future         | 1.33.1   |
+| furrr          | 0.3.1    |
+| ggplot2        | 3.4.4    |
+| gplots         | 3.1.3    |
+| MESS           | 0.5.9    |
+| optparse       | 1.7.3    |
+| parallel       | 4.3.0    |
+| patchwork      | 1.2.0    |
+| pheatmap       | 1.0.12   |
+| plyr           | 1.8.8    |
+| randomForest   | 4.7-1.1  |
+| readr          | 2.1.4    |
+| reshape2       | 1.4.4    |
+| scales         | 1.3.0    |
+| Seurat         | 5.0.1    |
+| SeuratObject   | 5.0.1    |
+| spatstat       | 3.0-6    |
+| sp             | 1.6-1    |
+| stats          | 4.3.0    |
+| tibble         | 3.2.1    |
+| tidyr          | 1.3.0    |
+| tidyverse      | 2.0.0    |
+| umap           | 0.2.10.0 |
+| viridis        | 0.6.4    |
+| viridisLite    | 0.4.2    |
+| xlsx           | 0.6.5    |
+| yaml           | 2.3.8    |
+| zoo            | 1.8-12   |
+| BiocManager    | 3.18     |
+| ggthemes       | (latest) |
+| gridExtra      | (latest) |
+| openxlsx       | (latest) |
+| devtools       | (latest) |
+| monocle3       | (latest) |
 
-packages for scRNA seq
-
-| Package           | Version  |
-|-------------------|----------|
-| BiocManager       | 3.18     |
-| devtools          | (latest) |
-| monocle3          | (latest) |
-| abind             | 1.4-5    |
-| dplyr             | 1.1.4    |
-| dtwclust          | 5.5.12   |
-| fs                | 1.6.3    |
-| future            | 1.33.1   |
-| furrr             | 0.3.1    |
-| ggplot2           | 3.4.4    |
-| gplots            | 3.1.3    |
-| MESS              | 0.5.9    |
-| optparse          | 1.7.3    |
-| parallel          | 4.3.0    |
-| patchwork         | 1.2.0    |
-| pheatmap          | 1.0.12   |
-| plyr              | 1.8.8    |
-| randomForest      | 4.7-1.1  |
-| readr             | 2.1.4    |
-| reshape2          | 1.4.4    |
-| scales            | 1.3.0    |
-| Seurat            | 5.0.1    |
-| SeuratObject      | 5.0.1    |
-| spatstat          | 3.0-6    |
-| sp                | 1.6-1    |
-| stats             | 4.3.0    |
-| tibble            | 3.2.1    |
-| tidyr             | 1.3.0    |
-| tidyverse         | 2.0.0    |
-| umap              | 0.2.10.0 |
-| viridis           | 0.6.4    |
-| viridisLite       | 0.4.2    |
-| xlsx              | 0.6.5    |
-| yaml              | 2.3.8    |
-| zoo               | 1.8-12   |
-| ggthemes          | (latest) |
-| gridExtra         | (latest) |
-| openxlsx          | (latest) |
-
-
-
+**Note:** For packages listed with "(latest)" as their version, you should install the most recent version available at the time of installation. This can be done using the `install.packages()` function for CRAN packages and the `BiocManager::install()` function for Bioconductor packages, without specifying a version number.
 
 ## Demo and intermediate files 
 
