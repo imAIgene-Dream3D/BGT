@@ -68,7 +68,7 @@ BGT uses the following R libraries (R version 4.3.2 (2023-10-31)) :
 ## Demo and intermediate files 
 
 In this repository we provide example datasets as well as intermediate files to run the different steps of the pipeline:
-$${\color{red}Avi/and/Miguel}$$ 
+$${\color{red}Miguel}$$ 
 - [//]: # (Commented instructions: list here the datasets that are provided in the demo folder including also the intermediary datasets that have.)
 
 RNAseq
