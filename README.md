@@ -200,8 +200,9 @@ This module uses the principle of probability transitivity to infer for each seq
 
 #### Configuration
 Ensure the `config_template.yml` is correctly configured for this module:
-- `scRNA_seq_dataset`: Path to the single-cell RNA sequencing dataset file.
-- Other parameters relevant to this module are set directly within the script or derived from the behavioral analysis outputs.
+- `scRNA_seq_dataset`: Path to the single-cell RNA sequencing dataset file derived as output of Module 2.
+- `CD8_engagement_behavior_freq.csv` and `CD4_engagement_behavior_freq.csv` files detailing the engagement frequency analysis for CD8 and CD4 T-cells derived as output of Module 3
+- Other parameters relevant to this module are set directly within the script.
 
 ***To run from the command line:***
 ```bash
