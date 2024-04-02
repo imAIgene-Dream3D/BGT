@@ -19,7 +19,7 @@ In terms of user expertise, a basic understanding of R programming is required t
 - [//]: # (Commented instructions: Mention any new software, hardware, or other system requirements that are specific to the extended pipeline.)
 
 ## Installations 
-BGT uses the following R libraries (R version 4.3.2 (2023-10-31) and 4.0.5 (2021) :
+BGT uses the following R libraries (R version 4.3.2 (2023) and 4.0.5 (2021) :
 
 | Package        | Version  |
 |----------------|----------|
