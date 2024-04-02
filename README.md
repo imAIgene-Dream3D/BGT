@@ -5,9 +5,7 @@ BGT is an imaging-guided transcriptomic experimental and analytical pipeline for
 ## Input data
 
 ### Imaging-derived dataset of behavior-classified T cells. 
-This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) 
-
-After running [Module 2: T cell Behavior Classification Module](https://github.com/AlievaRios/BEHAV3D/tree/dev-transcriptomics?tab=readme-ov-file#2-t-cell-behavior-classification-module) of [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) one of the output file named as, "classified_tcell_track_data.rds" generated which is directly utilized as an input rds file for modules 1 and 2 of the [BGT](https://github.com/AlievaRios/BGT) pipeline.
+This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6). After running [Module 2: T cell Behavior Classification](https://github.com/AlievaRios/BEHAV3D/tree/dev-transcriptomics?tab=readme-ov-file#2-t-cell-behavior-classification-module) of [BEHAV3D](https://github.com/AlievaRios/BEHAV3D), among the output .rds files named as, "classified_tcell_track_data.rds" is directly utilized as an input for modules 1 and 2 of the [BGT](https://github.com/AlievaRios/BGT) pipeline.
 
 ### Single cell sequencing data from T cells incubated with patient derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
