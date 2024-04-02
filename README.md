@@ -5,7 +5,10 @@ BGT is an imaging-guided transcriptomic experimental and analytical pipeline for
 ## Input data
 
 ### Imaging-derived dataset of behavior-classified T cells. 
-This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) $${\color{red}Avi}$$ what is the name of the file that is the output of BEHAV3D and input in BGT, has to be the same name
+This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) 
+
+After running [Module 2: T cell Behavior Classification Module]{https://github.com/AlievaRios/BEHAV3D/tree/dev-transcriptomics?tab=readme-ov-file#2-t-cell-behavior-classification-module} of [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) one of the output file named as, "classified_tcell_track_data.rds" generated which is directly utilized as an input rds file for modules 1 and 2 of the [BGT]{https://github.com/AlievaRios/BGT} pipeline.
+
 ### Single cell sequencing data from T cells incubated with patient derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
 $${\color{red}Miguel}$$ What is the name of the input file for scRNA seq that we provide as a demo
@@ -114,14 +117,14 @@ This module focuses on analyzing T-cell engagement dynamics, particularly highli
 
 #### Configuration
 Before running the module, ensure the config file (`config_template.yml`) is correctly set up with your specific parameters, including:
-- `classified_tcell_track_data_filepath_rds`: Path to the classified T cell track data file.
+- `classified_tcell_track_data_filepath_rds`: Path to the "classified_tcell_track_data.rds" file.
 - `imaging_time`: Time (in hours) when imaging starts in the experiment; this module will focus on time points after this.
 
 ***To run from the command line:***
 ```bash
 Rscript /path/to/TimepointGraph/timepoint_graph.R -c </Path/to/BGT/config_template.yml> -f
 ```
-The `-f` flag forces the re-import and processing of data even if the output files already exist. Optionally, use `-t` to specify an RDS file containing processed T-cell track data, if not already included in the BGT config.
+The `-f` flag forces the re-import and processing of data even if the output files already exist. Optionally, use `-t` to specify an RDS file containing processed "classified_tcell_track_data.rds" file, if not already included in the BGT config.
 
 ***To run from RStudio:***
 
@@ -159,6 +162,7 @@ This module is structured in the following way:
 
 #### Configuration
 Set up the `config_template.yml` with the necessary parameters for this module, including:
+- `classified_tcell_track_data_filepath_rds`: Path to the "classified_tcell_track_data.rds" file.
 - `n_timepoints`: The number of separation time points to include in the simulation.
 - `first_timepoint_interval_starts` and `first_timepoint_interval_ends`: The starting and ending minutes of the first time interval for separation.
 - `reoccuring_time`: Time difference (in minutes) for subsequent time intervals.
