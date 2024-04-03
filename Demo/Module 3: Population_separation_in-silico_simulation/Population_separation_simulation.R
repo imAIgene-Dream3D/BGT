@@ -14,8 +14,8 @@ tracks_provided=NULL
 if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
-  BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/working folder/BGT_Github")
-  pars = yaml.load_file("~/Desktop/working folder/BGT_Github/config_template.yml")
+  BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
+  pars = yaml.load_file("Demo/Module 3: Population_separation_in-silico_simulation/config_template.yml")
 
   ### For your own file, uncomment following line and add own path to the BEHAV3D_config.yml
   # pars = yaml.load_file("")
