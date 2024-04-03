@@ -1,0 +1,5 @@
+This folder contains the helper files/functions for Part_1 (QC, filtering):
+- Functions_QC.R
+- hg38_genes_with_ERCC_unique_ensembl_gene.tab (for genome annotation)
+- palette.rds (colors used for the report)
+- Plate_distribution_simple.xlsx (for the 384-well format)
