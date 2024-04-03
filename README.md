@@ -9,8 +9,7 @@ This data is obtained by performing multispectral time-lapse imaging of T cells 
 
 ### Single cell sequencing data from T cells incubated with patient derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
-$${\color{red}Miguel}$$ What is the name of the input file for scRNA seq that we provide as a demo
-The scRNA seq file we provide for the demo is 10T_master.rds 
+The scRNA seq file we provide for the demo is 10T_master.rds that you can find under the data folder
 
 ## Extended Software and Hardware Requirements
 As the BGT pipeline is an extended implementation to the BEHAV3D protocol, the input data required to apply it is generated from BEHAV3D pipeline, which has been extensively described [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) 
