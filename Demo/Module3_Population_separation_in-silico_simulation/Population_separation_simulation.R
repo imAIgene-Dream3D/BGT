@@ -41,7 +41,7 @@ if (interactive()) {
 }
 
 ### Setting data directory (if specified) and creating output directories
-output_dir=paste0(BGT_dir, "/Results/Population_seperation_simulation/")
+output_dir=paste0(BGT_dir, "/Results/Module3_Population_seperation_in-silico_simulation/")
 dir.create(output_dir, recursive=TRUE)
 
 
