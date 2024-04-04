@@ -18,7 +18,7 @@ if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
-  pars = yaml.load_file("Demo/Module4_Behavioral_probability_mapping/config_template.yml")
+  pars = yaml.load_file("~/BGT/Demo/Module4_Behavioral_probability_mapping/config_template.yml")
   
   ### For your own file, uncomment following line and add own path to the BEHAV3D_config.yml
   # pars = yaml.load_file("")
@@ -44,7 +44,7 @@ if (interactive()) {
 }
 
 ### Setting data directory 
-output_dir=paste0(BGT_dir, "/Results/Behavioral_guided_transcriptomics")
+output_dir=paste0(BGT_dir, "/Results/Module4_Behavioral_probability_mapping")
 dir.create(output_dir, recursive=TRUE)
 
 prob_output_dir=paste0(output_dir,"/probability_map")
@@ -52,7 +52,7 @@ dir.create(prob_output_dir)
 
 # Load data
 scRNA_seq_dataset <- readRDS(file = pars$scRNA_seq_dataset)
-CD8_behav <- read.csv(paste0(BGT_dir, "Demo/Module3_Population_separation_in-silico_simulation/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
+CD8_behav <- read.csv(paste0(BGT_dir, "Results/Module3_Population_separation_in-silico_simulation/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
 
 # plotting UMAP dimensional reduction
 p1<-DimPlot(scRNA_seq_dataset, reduction = "umap", pt.size=1, label.size = 8)+theme(aspect.ratio = 1)
