@@ -12,7 +12,7 @@ if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
-  pars = yaml.load_file("AlievaRios/BGT/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/config_template.yml")
+  pars = yaml.load_file("BGT/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/config_template.yml")
   
   ### For your own file, uncomment following line and add own path to the BEHAV3D_config.yml
   # pars = yaml.load_file("")
