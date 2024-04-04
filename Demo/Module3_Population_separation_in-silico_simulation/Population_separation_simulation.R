@@ -15,7 +15,7 @@ if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
-  pars = yaml.load_file("Demo/Module3_Population_separation_in-silico_simulation/config_template.yml")
+  pars = yaml.load_file("~/BGT/Demo/Module3_Population_separation_in-silico_simulation/config_template.yml")
 
   ### For your own file, uncomment following line and add own path to the BEHAV3D_config.yml
   # pars = yaml.load_file("")
@@ -54,10 +54,10 @@ reoccuring_time = pars$reoccuring_time
  
 # Set up parallel processing
 plan(multisession, workers = 4)
-print(pars$classified_tcell_track_data_filepath_rds)
+
 # Load data
 master_clust_Live <- readRDS(pars$classified_tcell_track_data_filepath_rds)
-print(first_timepoint_intervals[1])
+
 # Generate timepoint ranges
 time_intervals <- list()
 for (i in 1:n_timepoints) {
