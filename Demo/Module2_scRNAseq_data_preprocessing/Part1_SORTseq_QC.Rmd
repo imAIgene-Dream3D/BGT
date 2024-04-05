@@ -1,0 +1,160 @@
+
+# Pre-processing of raw SORTseq files (QC, filtering)
+Written by: Peter Brazda (20 Feb 2024) - Last Update: Farid Keramati, Peter Brazda (13 March 2024)
+
+This workflow aims to help an initial, per-plate (visual) inspection (1) and to prepare expression matrices for the downstream steps (2):
+
+QC
+1.1 Set the environment
+1.2 Collect the input files
+1.3 Run the loop to generate the .pdf reports
+
+Filtering
+2.1 Set the environment
+2.2 Collect the input files
+2.3 Run the loop to generate the filtered matrices
+
+Warning: Before running the script make sure to download Functions_QC.R for the helper functions, hg38_genes_with_ERCC_unique_ensembl_gene.tab for the genome annotation, and Plate_distribution_simple.xlsx for the 384-well plate format and the raw matrix files (e.g., TM621.transcripts). The format of the name is important.
+The pipeline requires an output folder for the compiled .pdf reports and also a 'temp' folder for the intermediate .png files.
+
+## 1. Generate QC-reports per plate
+
+### 1.1 Set the environment
+Identify the input/output folders and load the helper files and install the libraries
+
+```{r}
+install.packages("abind", version = "1.4-5")
+install.packages("dplyr", version = "1.1.4")
+install.packages("dtwclust", version = "5.5.12")
+install.packages("fs", version = "1.6.3")
+install.packages("future", version = "1.33.1")
+install.packages("furrr", version = "0.3.1")
+install.packages("ggplot2", version = "3.4.4")
+install.packages("gplots", version = "3.1.3")
+install.packages("MESS", version = "0.5.9")
+install.packages("optparse", version = "1.7.3")
+install.packages("parallel", version = "4.3.0")
+install.packages("patchwork", version = "1.2.0")
+install.packages("pheatmap", version = "1.0.12")
+install.packages("plyr", version = "1.8.8")
+install.packages("randomForest", version = "4.7-1.1")
+install.packages("readr", version = "2.1.4")
+install.packages("reshape2", version = "1.4.4")
+install.packages("scales", version = "1.3.0")
+install.packages("Seurat", version = "5.0.1")
+install.packages("SeuratObject", version = "5.0.1")
+install.packages("spatstat", version = "3.0-6")
+install.packages("sp", version = "1.6-1")
+install.packages("stats", version = "4.3.0")
+install.packages("tibble", version = "3.2.1")
+install.packages("tidyr", version = "1.3.0")
+install.packages("tidyverse", version = "2.0.0")
+install.packages("umap", version = "0.2.10.0")
+install.packages("viridis", version = "0.6.4")
+install.packages("viridisLite", version = "0.4.2")
+install.packages("xlsx", version = "0.6.5")
+install.packages("yaml", version = "2.3.8")
+install.packages("zoo", version = "1.8-12")
+```
+
+```{r}
+
+home <- "path to your folder" # select home directory
+
+setwd(home)
+
+source(paste0(home,"/helper_files/Functions_QC.R")) # the function to generate the QC plots for one plate
+dir <-  paste0(home,"/out/qc_plots/") # location for the final output .pdf file (the per-plate visual report)
+temp <- paste0(home,"/out/qc_plots/temp") # location for the temporary .png files
+matrices <- paste0(home,"/in/") # location for the raw matrix files
+gencode <- read.table(paste0(home,"/helper_files/hg38_genes_with_ERCC_unique_ensembl_gene.tab"), header = TRUE) # the hg38 reference extended with the ERCC genes
+primer <- read_excel(paste0(home,"/helper_files/Plate_distribution_simple.xlsx"), col_names = FALSE) # primer plate distribution file
+```
+
+```{r}
+ls()
+```
+
+### 1.2 Collect a list of all .transcript.txt files
+
+```{r}
+transcript_files <- list.files(matrices, '\\.transcripts.txt$', full.names = TRUE)
+```
+
+### 1.3 Loop through each file to generate QC report
+It is advised to remove the suppressWarnings during the first run.
+
+```{r}
+suppressWarnings({
+
+    for(file_path in transcript_files) {
+  setwd(home)
+  plateID <- gsub("\\.transcripts\\.txt$", "", basename(file_path)) # extract the plateID from the file name
+  setwd(temp)
+  
+  # Generate QC report for the current plate
+  Prepare_SORTseq_QC_report(plateID = plateID, matrices = matrices, primer = primer, gencode = gencode) # the function is defined in Functions_QC.R
+  
+  # Grab the files from the temp folder
+  files <- list.files(temp, '\\.png$', full.names = TRUE)
+  rl <- lapply(files, png::readPNG)
+  gl <- lapply(rl, grid::rasterGrob)
+  
+  pdf_file <- paste0(dir, "QCreport_", plateID, ".pdf")
+  ggsave(pdf_file, gridExtra::marrangeGrob(grobs = gl, nrow = 5, ncol = 4, top = NULL), width = 8, height = 10)
+  file.remove(files) # Remove temporary .png files after saving the report
+}
+    })
+    
+```
+
+## 2. Filter the matrices
+
+### 2.1 Set the environment
+Identify the input/output folders and load the helper files.
+
+```{r}
+home <- "path to your folder" # select home directory
+
+
+setwd(home)
+source(paste0(home,"/helper_files/Functions_QC.R")) # the function to generate the QC plots for one plate
+dir <-  paste0(home,"/out/qc_plots/") # location for the final output .pdf file (the per-plate visual report)
+
+gencode <- read.table(paste0(home,"/helper_files/hg38_genes_with_ERCC_unique_ensembl_gene.tab"), header = TRUE) # the hg38 reference extended with the ERCC genes
+input_location <- paste0(home,"/in/") # location for the raw matrix files
+output_location_nME <- paste0(home,"/out/qc_plots/1_noMITO_noERCC/") # output folder for the matrix after filtering and subsequent removal of mitochondrial AND ERCC genes
+output_location_nE <- paste0(home,"/out/qc_plots/2_noERCC/")  # output folder for the matrix after filtering and subsequent removal of ERCC genes
+
+```
+
+### 2.2 Collect a list of all .transcript.txt files
+
+```{r}
+transcript_files <- list.files(input_location, pattern = "\\.transcripts\\.txt$", full.names = FALSE)
+```
+
+### 2.3 Loop through each file to process them
+This loop uses a custom function that identifies mitochondrial and ERCC genes and generates matrices without these genes.
+It is advised to remove the suppressWarnings during the first run.
+
+```{r}
+suppressWarnings({
+    for(file_name in transcript_files) {
+  plateID <- gsub("\\.transcripts\\.txt$", "", file_name) # extract the plateID from the file name
+  
+  # Call the filtering function for each plate
+  Filter_SORTseq_tables(plate = plateID,  # the function is defined in Functions_QC.R
+                        input_location = input_location,
+                        # mito.pct.max = mito.pct.max, # set the upper limit for % mitochondrial gene counts per cell, default = 30
+                        # ercc.content.max = ercc.content.max # set the upper limit for % ERCC gene counts per cell (high % reflects failed mRNA-capture, but successful amplification), default = 25
+                        output_location_nME = output_location_nME,
+                        output_location_nE = output_location_nE) 
+}
+    })
+```
+
+```{r}
+print(sessionInfo())
+```
+

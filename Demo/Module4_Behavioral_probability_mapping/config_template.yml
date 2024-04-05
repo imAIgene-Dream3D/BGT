@@ -1,0 +1,13 @@
+###################################################################################
+### parameters for Module 4: Behavior probabilty mapping ###
+###################################################################################
+
+### Provide data_dir
+#Processed scRNAseq data after Module 2
+scRNA_seq_dataset: "~/BGT/Demo/Module4_Behavioral_probability_mapping/scRNA_seq_dataset.rds"
+
+
+
+       
+
+
