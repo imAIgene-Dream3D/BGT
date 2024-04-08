@@ -10,6 +10,7 @@ Once Git is installed, open your terminal (Command Prompt or PowerShell on Windo
 
 ```bash
 git clone https://github.com/AlievaRios/BGT.git
+```
 
 
 ## Input data
