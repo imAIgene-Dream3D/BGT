@@ -143,15 +143,19 @@ For additional analysis or adjustments to visualization parameters, consult the 
 ----
 ### (2) scRNAseq data preprocessing
 This module contains scripts to process and analyze single cell sequencing data of T cells.
-To test this pipeline you can either use the provided demos datasets or download an example sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). 
-This module is structured in the following way:
-1. [Pre-processing of raw SORTseq data (QC, filtering)](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)
-2. [Subset Identification](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)
-3. [Pseudotime Analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)
-4. [Dynamic Gene Clustering](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)
-5. [Comparison to In vivo Data](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)
+To test this pipeline you can either use the provided demos datasets or download an example sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). You have two ways of running these scripts: through Jupyter Notebooks or Markdown R scripts.
 
-----
+***To run from RStudio:***
+
+**Step 1:** For a demo run, use these scripts. Adjust the path to your data folder inside each script (at the begining of each file).
+This module is structured in the following way:
+| Script                                 | Jupyter Notebook                                                                                                | R Markdown                                                                                                                                                        | Key Features                                                                                                                                                                      |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1 - Pre-processing of raw SORTseq data  | [1 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)                    | [1 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.Rmd)                                                                         | This script is for an initial, per-plate (visual) inspection and to prepare expression matrices for the downstream steps.                                           |
+| 2 - Subset Identification                | [2 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)          | [2 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.Rmd)                                                              | This script aims to identify different T cell subsets in the dataset and annotate them.                                                                                                                                                   |
+| 3 - Pseudotime Analysis                 | [3 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)                     | [3 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.Rmd)                                                                         | This script aims to infer pseudotime trajectory for TEG subsets we identified during the previous analysis pipeline.                                                                                                                      |
+| 4 - Dynamic Gene Clustering             | [4 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)                 | [4 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.Rmd)                                                                      | This script aims to cluster dynamic genes along the trajectory (identified as the result of running the previous part of the whole analysis pipeline) into categories of genes with highly similar behavior.                           |
+| 5 - Comparison to In vivo Data           | [5 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)            | [5 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.Rmd)                                                                 | This script aims to identify marker genes related to highly tumor-reactive T cells in cancer tumor microenvironment datasets and check whether those genes are also enriched in our TEG dataset's clusters. |
 
 ### (3)  Population separation in silico simulation  
 
