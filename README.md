@@ -2,6 +2,16 @@
 
 BGT is an imaging-guided transcriptomic experimental and analytical pipeline for co-cultures of Patient Derived Organoides with (engeneered) T cells described in [Dekkers&Alieva et al Nat. Biotech (2022)](https://www.nature.com/articles/s41587-022-01397-w). This repository compiles the analytical procedures required to integrate data from single-cell RNA sequencing of T cells with single-cell imaging data, providing for each sequenced cell probabilities of exhibiting different functional behaviors.
 
+## Cloning Instructions
+
+To clone this repository to your local machine, you will need Git installed. [Follow these instructions to install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) if you haven't already.
+
+Once Git is installed, open your terminal (Command Prompt or PowerShell on Windows, Terminal on macOS and Linux) and run the following command:
+
+```bash
+git clone https://github.com/AlievaRios/BGT.git
+
+
 ## Input data
 
 ### Imaging-derived dataset of behavior-classified T cells. 
