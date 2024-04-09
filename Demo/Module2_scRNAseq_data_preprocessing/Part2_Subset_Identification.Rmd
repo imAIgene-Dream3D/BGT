@@ -441,7 +441,7 @@ As the final step in this workflow, we will generate a seurat object using only 
 To this aim, we again read-in the original Seurat object and subset it to have only verified cells.
 
 ```{r}
-teg_orig = readRDS("1_set_N2_3_13T_N0_EXTENDED_MNN_umap.rds")
+#teg_orig = readRDS("1_set_N2_3_13T_N0_EXTENDED_MNN_umap.rds")
 cd8 = readRDS("CD8_MNN_Seurat.rds")
 cd4_1 = readRDS("CD4_IL17RBNeg_MNN_Seurat.rds")
 cd4_2 = readRDS("CD4_IL17RBPos_MNN_Seurat.rds")
@@ -455,11 +455,11 @@ teg_orig$Subset = cells$Subset
 # Generate a new Seurat object
 teg_counts = GetAssayData(teg_orig, slot = "counts")
 teg = CreateSeuratObject(counts = teg_counts, project = "teg", min.cells = 0, min.features = 0)
-teg$Engagement = teg_orig$engagement
+teg$Engagement = teg_orig$Engagement
 teg$Engagement = gsub("nonengager", "never-engaged", teg$Engagement)
 teg$Organoid = teg_orig$Organoid
-teg$Experiment = teg_orig$experiment
-teg$Plate = teg_orig$plate
+teg$Experiment = teg_orig$Experiment
+teg$Plate = teg_orig$Plate
 teg$Subset = teg_orig$Subset
 teg[["percent.mt"]] = PercentageFeatureSet(teg, pattern = "MT-")
 teg[["percent.rb"]] = PercentageFeatureSet(teg, pattern = "^RP[LS]")
