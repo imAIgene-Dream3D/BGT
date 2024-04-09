@@ -49,8 +49,8 @@ Use the following code to install the required packages:
 
 
 ```{r}
-install.packages(c("Seurat", "dplyr", "ggplot2", "remotes"))
-remotes::install_github('satijalab/seurat-wrappers')
+#install.packages(c("Seurat", "dplyr", "ggplot2", "remotes")) # apply this lines if you are using a different enviroment 
+#remotes::install_github('satijalab/seurat-wrappers')
 
 suppressMessages(library(Seurat))
 suppressMessages(library(dplyr))

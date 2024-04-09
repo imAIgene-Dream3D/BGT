@@ -29,8 +29,8 @@ For the following workflow we will need Seurat, dplyr, data.table, and SeuratWra
 Make sure you have them installed before starting the analysis.
 Use the following code to install the required packages:
 ```{r}
-install.packages(c("Seurat","dplyr","data.table","remotes","devtools"))
-remotes::install_github('satijalab/seurat-wrappers')
+#install.packages(c("Seurat","dplyr","data.table","remotes","devtools")) # # apply this lines if you are using a different enviroment 
+#remotes::install_github('satijalab/seurat-wrappers')
 suppressMessages(library(Seurat))
 suppressMessages(library(dplyr))
 suppressMessages(library(data.table))

@@ -23,43 +23,8 @@ The pipeline requires an output folder for the compiled .pdf reports and also a 
 Identify the input/output folders and load the helper files and install the libraries
 
 ```{r}
-install.packages("abind", version = "1.4-5")
-install.packages("dplyr", version = "1.1.4")
-install.packages("dtwclust", version = "5.5.12")
-install.packages("fs", version = "1.6.3")
-install.packages("future", version = "1.33.1")
-install.packages("furrr", version = "0.3.1")
-install.packages("ggplot2", version = "3.4.4")
-install.packages("gplots", version = "3.1.3")
-install.packages("MESS", version = "0.5.9")
-install.packages("optparse", version = "1.7.3")
-install.packages("parallel", version = "4.3.0")
-install.packages("patchwork", version = "1.2.0")
-install.packages("pheatmap", version = "1.0.12")
-install.packages("plyr", version = "1.8.8")
-install.packages("randomForest", version = "4.7-1.1")
-install.packages("readr", version = "2.1.4")
-install.packages("reshape2", version = "1.4.4")
-install.packages("scales", version = "1.3.0")
-install.packages("Seurat", version = "5.0.1")
-install.packages("SeuratObject", version = "5.0.1")
-install.packages("spatstat", version = "3.0-6")
-install.packages("sp", version = "1.6-1")
-install.packages("stats", version = "4.3.0")
-install.packages("tibble", version = "3.2.1")
-install.packages("tidyr", version = "1.3.0")
-install.packages("tidyverse", version = "2.0.0")
-install.packages("umap", version = "0.2.10.0")
-install.packages("viridis", version = "0.6.4")
-install.packages("viridisLite", version = "0.4.2")
-install.packages("xlsx", version = "0.6.5")
-install.packages("yaml", version = "2.3.8")
-install.packages("zoo", version = "1.8-12")
-```
 
-```{r}
-
-home <- "path to your folder" # select home directory
+home <- "C:/Users/Malieva/Desktop/napo/BGT-dev_avi/scripts" # select home directory
 
 setwd(home)
 

@@ -39,8 +39,8 @@ Make sure you have them installed before starting the analysis.
 Use the following code to install the required packages:
 
 ```{r}
-install.packages(c("Seurat","dplyr","ggplot2","pheatmap","ggthemes","openxlsx","devtools"))
-devtools::install_github('cole-trapnell-lab/monocle3')
+#install.packages(c("Seurat","dplyr","ggplot2","pheatmap","ggthemes","openxlsx","devtools")) ## apply this lines if you are using a different enviroment 
+#devtools::install_github('cole-trapnell-lab/monocle3')
 suppressMessages(library(Seurat))
 suppressMessages(library(dplyr))
 suppressMessages(library(ggplot2))
