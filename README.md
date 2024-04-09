@@ -41,7 +41,7 @@ wsl --install -d Ubuntu-22.04
 ```
 
 ### Follow the Guide from Singularity Tutorial *OR* the following steps
-If not using Ubuntu, refer to a distribution-specific guide at [Singularity Tutorial](https://singularity-tutorial.github.io/01-installation/).
+If not using Ubuntu or something below doesn´t work, refer to official guide at [Singularity Tutorial](https://singularity-tutorial.github.io/01-installation/).
 
 ### 1 Install Dependencies
 open a terminal in linux (in windows go to search bar and type ubuntu)
