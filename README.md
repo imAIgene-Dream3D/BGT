@@ -75,47 +75,11 @@ BGT uses the following R libraries (R version 4.3.2 (2023) and 4.0.5 (2021) :
 
 **Note:** For packages listed with '(latest)' as their version, the user should install the most recent version available at the time of installation. This can be done using the `install.packages()` function for CRAN packages and the `BiocManager::install()` function for Bioconductor packages, without specifying a version number.
 
-## Demo and intermediate files 
-
-In this repository we provide example datasets as well as intermediate files to run the different steps of the pipeline:
-- [//]: # (Commented instructions: list here the datasets that are provided in the demo folder including also the intermediary datasets that have.)
-
-RNAseq
-- 10T_master.rds
-- All_TEGs_MNN_Seurat.rds
-- CD4_IL17RBNeg_Dynamic_Genes.rds
-- CD4_IL17RBNeg_MNN_Seurat.rds
-- CD4_IL17RBPos_Dynamic_Genes.rds
-- CD4_IL17RBPos_MNN_Seurat.rds
-- CD8_Dynamic_Genes.rds
-- CD8_MNN_Seurat.rds
-- Savas_CD8_Trm_MarkerGenes.rds
-intermediate demo objects to test the pipeline partially or full
-
 ## Repository Structure 
 This repository contains a collection of scripts and example datasets enabling the following dowstream analysis. Follow the structure in the script folder for each module and each analysis type. Introduce the corresponding folder/ file direction on your own computer where required (note that to specify directory paths in R (/) forward slash is recommended):
 
-## Set-up 
-BGT uses 2 specific fiels to customize the analysis:\
-
-BGT_config
-Contains all experiment-specific settings and paths to data for all modules in BGT
-An example version can be found in ...BGT/configs/BGT_config_template.yml
-Explanation on what each variable changes is commented in that template
-
-- [//]: # (Commented instructions: Detail any additional setup or configuration steps required to use the new features.)
-
 ## Demos 
-You can run BGT on demo data to see examples of the results. This will take <10 minutes
-
-There are 2 demos:
-
-T cell population seperation simulation (For 'in-silico T cell and Tumor organoid co-culture)
-Behavioral guided transcriptomics (For 'Behavioral integration with single cell Sequencing)
->Step 1 To set up the demo on you local PC, run ...BGT/demos/xyz.R
-This sets up the paths in the BEHAV3D config file for the demo, then run the different modules on the demo (look below).
-
-- [//]: # (Commented instructions: If you have created demos to showcase the new features, provide instructions on how users can run these demos.)
+You can run BGT on demo data to see examples of the results. This will take <20 minutes
 
 ##  Modules
 ![BGT workflow](https://github.com/AlievaRios/BGT/blob/dev_avi/BGT%20analysis%20workflow.jpg)
