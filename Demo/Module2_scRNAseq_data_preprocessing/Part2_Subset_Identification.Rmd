@@ -233,11 +233,11 @@ options(repr.plot.width=17, repr.plot.height=5)
 DimPlot(cd8) + DimPlot(cd8, group.by="Engagement", pt.size=1.5, shuffle=T) + DimPlot(cd8, group.by="Experiment")
 ```
 
-```{r}
+
 #### 2.1.2 Batch Correction
 Based on the results of the previous section, there is a clear experimental batch effect that needs to be corrected.
 We will use RunFastMNN function from SeuratWrappers package, which is a fast implementation of the original MNN algorithm.
-```
+
 
 ```{r}
 cd8_mnn = RunFastMNN(object.list=SplitObject(cd8, split.by="Experiment"), features=3000, verbose=F)
