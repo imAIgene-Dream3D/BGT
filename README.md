@@ -30,6 +30,74 @@ In terms of user expertise, a basic understanding of R programming is required t
 - [//]: # (Commented instructions: Mention any new software, hardware, or other system requirements that are specific to the extended pipeline.)
 
 ## Installations 
+
+For a smoother installation experience, we suggest using the provided Singularity image. This pre-configured image includes all necessary dependencies, reducing manual installation steps and potential errors. This installation was tested in Windows and Linux.
+
+### Install a Linux Distribution (For windows Users)
+Open a powershell command line (search in windows bar for powershell) and execute this command
+
+```bash
+wsl --install -d Ubuntu-22.04
+```
+
+### Follow the Guide from Singularity Tutorial *OR* the following steps
+If not using Ubuntu, refer to a distribution-specific guide at [Singularity Tutorial](https://singularity-tutorial.github.io/01-installation/).
+
+### 1 Install Dependencies
+open a terminal in linux (in windows go to search bar and type ubuntu)
+paste the comands one by one
+```bash
+sudo apt-get update
+```
+```bash
+sudo apt-get install -y build-essential libssl-dev uuid-dev libgpgme11-dev \
+    squashfs-tools libseccomp-dev wget pkg-config git cryptsetup debootstrap
+```
+### 2 Install Go
+paste the comands one by one
+```bash
+wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
+sudo tar --directory=/usr/local -xzvf go1.13.linux-amd64.tar.gz
+export PATH=/usr/local/go/bin:$PATH
+```
+
+### 3 Install Singularity
+paste the comands one by one
+```bash
+wget https://github.com/singularityware/singularity/releases/download/v3.5.3/singularity-3.5.3.tar.gz
+tar -xzvf singularity-3.5.3.tar.gz
+cd singularity
+./mconfig
+cd builddir
+make
+sudo make install
+```
+
+### 4 Configure Bash Completion for Singularity
+paste the comands one by one
+```bash
+source etc/bash_completion.d/singularity
+sudo cp etc/bash_completion.d/singularity /etc/bash_completion.d/
+```
+
+### 5 Execute Your Image
+
+Once you have everything installed, proceed to execute the image you downloaded.
+
+```bash
+singularity shell --pid bgt_image.sif
+```
+
+### 6 Start RStudio Server
+when you are inside of the singularity image execute this command
+
+```bash
+rstudio-server start
+```
+### 7 Enter RStudio 
+The webpage will be accessible through any web browser at [http://localhost:8787](http://localhost:8787).
+
+
 BGT uses the following R libraries (R version 4.3.2 (2023) and 4.0.5 (2021) :
 
 | Package        | Version  |
