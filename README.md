@@ -29,10 +29,13 @@ In terms of user expertise, a basic understanding of R programming is required t
 
 - [//]: # (Commented instructions: Mention any new software, hardware, or other system requirements that are specific to the extended pipeline.)
 
-## Installations 
+# Installations 
+You have two options to execute the pipeline:
+- [Option one](#option-1) (Recommended): using the provided Singularity image. This pre-configured image includes all necessary dependencies, reducing manual installation steps and potential errors. This installation was tested in Windows and Linux.
+- [Option two](#option-2):Installing all the libraries and packages yourself (Make sure to use the specific versions of the packages listed)
 
-For a smoother installation experience, we suggest using the provided Singularity image. This pre-configured image includes all necessary dependencies, reducing manual installation steps and potential errors. This installation was tested in Windows and Linux.
-
+## OPTION 1
+Download the Singularity image [Link ](https://zenodo.org/records/10953043).
 ### Install a Linux Distribution (For windows Users)
 Open a powershell command line (search in windows bar for powershell) and execute this command
 
@@ -41,46 +44,93 @@ wsl --install -d Ubuntu-22.04
 ```
 
 ### Follow the Guide from Singularity Tutorial *OR* the following steps
-If not using Ubuntu or something below doesn´t work, refer to official guide at [Singularity Tutorial](https://singularity-tutorial.github.io/01-installation/).
 
-### 1 Install Dependencies
-open a terminal in linux (in windows go to search bar and type ubuntu)
-paste the comands one by one
+If you are not using Ubuntu or something in the tutorial below doesn't work, refer to the official guide at [Singularity Tutorial](https://singularity-tutorial.github.io/01-installation/).
+
+---
+
+### 1. Install Dependencies
+
+Open a terminal in Linux (in Windows, go to the search bar and type Ubuntu) and paste the commands one by one:
+
 ```bash
 sudo apt-get update
 ```
+
 ```bash
 sudo apt-get install -y build-essential libssl-dev uuid-dev libgpgme11-dev \
     squashfs-tools libseccomp-dev wget pkg-config git cryptsetup debootstrap
 ```
-### 2 Install Go
-paste the comands one by one
+
+---
+
+### 2. Install Go
+
+Paste the commands one by one:
+
 ```bash
 wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
+```
+
+```bash
 sudo tar --directory=/usr/local -xzvf go1.13.linux-amd64.tar.gz
+```
+
+```bash
 export PATH=/usr/local/go/bin:$PATH
 ```
 
-### 3 Install Singularity
-paste the comands one by one
+---
+
+### 3. Install Singularity
+
+Paste the commands one by one:
+
 ```bash
 wget https://github.com/singularityware/singularity/releases/download/v3.5.3/singularity-3.5.3.tar.gz
+```
+
+```bash
 tar -xzvf singularity-3.5.3.tar.gz
+```
+
+```bash
 cd singularity
+```
+
+```bash
 ./mconfig
+```
+
+```bash
 cd builddir
+```
+
+```bash
 make
+```
+
+```bash
 sudo make install
 ```
 
-### 4 Configure Bash Completion for Singularity
-paste the comands one by one
+---
+
+### 4. Configure Bash Completion for Singularity
+
+Paste the commands one by one:
+
 ```bash
 source etc/bash_completion.d/singularity
+```
+
+```bash
 sudo cp etc/bash_completion.d/singularity /etc/bash_completion.d/
 ```
 
-### 5 Execute Your Image
+---
+
+### 5. Execute Your Image
 
 Once you have everything installed, proceed to execute the image you downloaded.
 
@@ -88,17 +138,27 @@ Once you have everything installed, proceed to execute the image you downloaded.
 singularity shell --pid bgt_image.sif
 ```
 
-### 6 Start RStudio Server
-when you are inside of the singularity image execute this command
+---
+
+### 6. Start RStudio Server
+
+When you are inside the Singularity image, execute this command:
 
 ```bash
 rstudio-server start
 ```
-### 7 Enter RStudio 
+
+---
+
+### 7. Enter RStudio 
+
 The webpage will be accessible through any web browser at [http://localhost:8787](http://localhost:8787).
 
+--- 
+NOTE: Rstudio will be closed if you kill the terminal (the data will be preserved)
 
-BGT uses the following R libraries (R version 4.3.2 (2023) and 4.0.5 (2021) :
+## OPTION 2
+Install all the following libraries (R version 4.3.2 (2023) and 4.0.5 (2021) :
 
 | Package        | Version  |
 |----------------|----------|
@@ -290,5 +350,6 @@ Currently you can view it by :
 - Experimental Condition
 - PT Cluster
 - [//]: # (Commented instructions: If there's further documentation, such as a wiki, or publications related to the extended features, provide links here.)
+
 
 
