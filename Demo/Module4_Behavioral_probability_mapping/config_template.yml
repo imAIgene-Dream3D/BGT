@@ -8,7 +8,7 @@ output_dir: "./Results_Module4/"
 
 ### Provide data_dir
 #Processed scRNAseq data after Module 2
-scRNA_seq_dataset: "~/BGT/Demo/Module4_Behavioral_probability_mapping/scRNA_seq_dataset.rds"
+scRNA_seq_dataset: "scRNA_seq_dataset.rds"
 
 
 
