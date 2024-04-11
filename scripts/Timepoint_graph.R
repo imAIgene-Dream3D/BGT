@@ -1,23 +1,28 @@
 library(dplyr)
 library(ggplot2)
 library(yaml)
+library(optparse)
 
 
 ### Set to TRUE if you want to run import and processing even if file already exists
 force_redo=TRUE
 tracks_provided=NULL
 
+BGT_dir <- NULL
+
 ### Checks if being run in GUI (e.g. Rstudio) or command line
 if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
-  BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/working folder/BGT_Github")
-  pars = yaml.load_file("~/Desktop/working folder/BGT_Github/config_template.yml")
-  
-  ### For your own file, uncomment following line and add own path to the BEHAV3D_config.yml
-  # pars = yaml.load_file("")
-  
+  BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
+  pars = yaml.load_file("~/BGT/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/config_template.yml")
 } else {
+  ### Define a default BGT_dir for non-interactive sessions if not set
+  ### You may adjust this path as necessary for your non-interactive environment
+  if(is.null(BGT_dir)) {
+    BGT_dir <- "~/BGT/"  # Adjust this path as necessary
+  }
+  
   option_list = list(
     make_option(c("-c", "--config"), type="character", default=NULL, 
                 help="Path to the BGT config file", metavar="character"),
@@ -38,7 +43,7 @@ if (interactive()) {
 }
 
 ### Setting data directory (if specified) and creating output directories
-output_dir=paste0(BGT_dir, "/Results/Seperation_time_graph/")
+output_dir=paste0(BGT_dir, "/Results/Module1_Evaluation_of_Super_engager_population_dynamics_in_co_culture/")
 dir.create(output_dir, recursive=TRUE)
 
 imaging_time = pars$imaging_time
