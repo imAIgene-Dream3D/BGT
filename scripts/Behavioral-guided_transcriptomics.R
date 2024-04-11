@@ -13,17 +13,21 @@ library(optparse)
 force_redo=TRUE
 tracks_provided=NULL
 
+BGT_dir <- NULL
+
 ### Checks if being run in GUI (e.g. Rstudio) or command line
 if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
-  BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/working folder/BGT_Github")
-  pars = yaml.load_file("~/Desktop/working folder/BGT_Github/config_template.yml")
-  
-  ### For your own file, uncomment following line and add own path to the BEHAV3D_config.yml
-  # pars = yaml.load_file("")
-  
+  BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
+  pars = yaml.load_file("~/BGT/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/config_template.yml")
 } else {
+  ### Define a default BGT_dir for non-interactive sessions if not set
+  ### You may adjust this path as necessary for your non-interactive environment
+  if(is.null(BGT_dir)) {
+    BGT_dir <- "~/BGT/"  # Adjust this path as necessary
+  }
+  
   option_list = list(
     make_option(c("-c", "--config"), type="character", default=NULL, 
                 help="Path to the BGT config file", metavar="character"),
@@ -43,8 +47,9 @@ if (interactive()) {
   tracks_provided=opt$tracks_rds
 }
 
+
 ### Setting data directory 
-output_dir=paste0(BGT_dir, "/Results/Behavioral_guided_transcriptomics")
+output_dir=paste0(BGT_dir, "/Results/Module4_Behavioral_probability_mapping")
 dir.create(output_dir, recursive=TRUE)
 
 prob_output_dir=paste0(output_dir,"/probability_map")
@@ -52,7 +57,7 @@ dir.create(prob_output_dir)
 
 # Load data
 scRNA_seq_dataset <- readRDS(file = pars$scRNA_seq_dataset)
-CD8_behav <- read.csv(paste0(BGT_dir, "/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
+CD8_behav <- read.csv(paste0(BGT_dir, "Results/Module3_Population_separation_in-silico_simulation/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
 
 # plotting UMAP dimensional reduction
 p1<-DimPlot(scRNA_seq_dataset, reduction = "umap", pt.size=1, label.size = 8)+theme(aspect.ratio = 1)
@@ -305,4 +310,3 @@ levels(x = scRNA_seq_dataset) <- c( "TEGs_alone" ,"tumor_exposed","engagement", 
 ### Save the processed Seurat object
 
 saveRDS(scRNA_seq_dataset,paste0(output_dir,"/scRNA_seq_dataset_processed.rds"))
-
