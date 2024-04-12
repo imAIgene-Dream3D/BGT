@@ -222,7 +222,7 @@ Before running the module, ensure the config file (`config_template.yml`) is cor
 
 ***To run from the command line:***
 ```bash
-Rscript /path/to/TimepointGraph/timepoint_graph.R -c </Path/to/BGT/config_template.yml> -f
+Rscript /path/to/TimepointGraph/Timepoint_graph.R -c </Path/to/BGT/config_template.yml> -f
 ```
 The `-f` flag forces the re-import and processing of data even if the output files already exist. Optionally, use `-t` to specify an RDS file containing processed "classified_tcell_track_data.rds" file, if not already included in the BGT config.
 
@@ -273,7 +273,7 @@ Set up the `config_template.yml` with the necessary parameters for this module, 
 
 ***To run from the command line:***
 ```bash
-Rscript /path/to/PopulationSeparationSimulation/population_separation_simulation.R -c </Path/to/BGT/config_template.yml> -f
+Rscript /path/to/PopulationSeparationSimulation/Population_separation_simulation.R -c </Path/to/BGT/config_template.yml> -f
 ```
 Use the `-f` flag to force re-import and processing of data if output files already exist. The `-t` option allows specifying an RDS file with processed T-cell track data, if not included in the BGT config.
 
@@ -312,7 +312,7 @@ Ensure the `config_template.yml` is correctly configured for this module:
 
 ***To run from the command line:***
 ```bash
-Rscript /path/to/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R -c </Path/to/BGT/config_template.yml> -f
+Rscript /path/to/BehavioralGuidedTranscriptomics/Behavioral-guided_transcriptomics.R -c </Path/to/BGT/config_template.yml> -f
 ```
 Use `-f` to force re-import and processing of data if output files already exist. Optionally, `-t` can specify an RDS file with processed T-cell track data not included in the BGT config.
 
