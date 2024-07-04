@@ -32,7 +32,8 @@ if (interactive()) {
   force_redo=opt$force_redo
   tracks_provided=opt$tracks_rds
 }
-
+# Set path to you config manually
+# pars = yaml.load_file("config_template.yml")
 output_dir= paste0(pars$BGT_dir, pars$output_dir)
 
 dir.create(output_dir, recursive=TRUE)
