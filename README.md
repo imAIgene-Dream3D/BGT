@@ -35,9 +35,10 @@ You have two options to execute the pipeline:
 - [Option two](#option-2): Installing all the libraries and packages yourself (Make sure to use the specific versions of the packages listed)
 
 ## OPTION 1
-Download the Singularity image [Link ](https://zenodo.org/records/10953043).
-### Install a Linux Distribution (For Windows Users)
+
+### Install WSL: a Linux Distribution (For Windows Users)
 Open a PowerShell command line (search in the Windows bar for PowerShell) and execute this command
+Note: Skip to step 1 if you already have Wsl or linux as the operating system in your analysis PC.
 
 ```bash
 wsl --install -d Ubuntu-22.04
@@ -139,7 +140,12 @@ git clone https://github.com/AlievaRios/BGT.git
 
 ---
 
-### 6. Execute Your Image
+### 6. Download your Image
+Download the Singularity image [Link ](https://zenodo.org/records/10953043).
+
+---
+
+### 7. Execute Your Image
 
 Once you have everything installed, proceed to execute the image you downloaded.
 
@@ -149,7 +155,7 @@ singularity shell --pid bgt_image.sif
 
 ---
 
-### 7. Start RStudio Server
+### 8. Start RStudio Server
 
 When you are inside the Singularity image, execute this command:
 
@@ -159,7 +165,7 @@ rstudio-server start
 
 ---
 
-### 8. Enter RStudio 
+### 9. Enter RStudio 
 
 Copy and paste [http://localhost:8787](http://localhost:8787) this webpage URL.
 The webpage will be accessible through any web browser of your choice.
