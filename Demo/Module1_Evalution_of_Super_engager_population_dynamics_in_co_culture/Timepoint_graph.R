@@ -41,6 +41,8 @@ if (interactive()) {
   force_redo=opt$force_redo
   tracks_provided=opt$tracks_rds
 }
+#Setup the path to config file if the path fails
+#  pars = yaml.load_file("path to your config file")
 
 ### Setting data directory (if specified) and creating output directories
 output_dir=paste0(BGT_dir, "/Results/Module1_Evaluation_of_Super_engager_population_dynamics_in_co_culture/")
