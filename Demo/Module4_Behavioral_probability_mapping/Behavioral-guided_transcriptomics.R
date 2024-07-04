@@ -46,7 +46,8 @@ if (interactive()) {
   force_redo=opt$force_redo
   tracks_provided=opt$tracks_rds
 }
-
+# Set path to you config manually
+# pars = yaml.load_file("config_template.yml")
 
 ### Setting data directory 
 output_dir=paste0(BGT_dir, "/Results/Module4_Behavioral_probability_mapping")
@@ -58,6 +59,10 @@ dir.create(prob_output_dir)
 # Load data
 scRNA_seq_dataset <- readRDS(file = pars$scRNA_seq_dataset)
 CD8_behav <- read.csv(paste0(BGT_dir, "Results/Module3_Population_separation_in-silico_simulation/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
+
+# remove column with name 'total_n' if it exists in CD8_behav
+if(“total_n” %in% colnames(CD8_behav)){
+		CD8_behav <- CD8_behav[, !colnames(CD8_behav) %in% “total_n”)]}
 
 # plotting UMAP dimensional reduction
 p1<-DimPlot(scRNA_seq_dataset, reduction = "umap", pt.size=1, label.size = 8)+theme(aspect.ratio = 1)
@@ -76,7 +81,7 @@ CD8_behav$behavioral_cluster=factor(CD8_behav$behavioral_cluster, levels=c(0,2,3
 # For this we cluster the scRNA seq data with different resolutions (creating a range of bigger to smaller clusters)
 ###### This allows to create an accurate probability map, assuming that cells that are similar to each other also have a similar probability map.
 
-## For loop for different resolution of clusters.
+## For loop for different resolutions of clusters.
 for (r in seq_along(1:7)){
   scRNA_seq_dataset_1 <- FindClusters(scRNA_seq_dataset,method=RunUMAP, resolution = r)
   
