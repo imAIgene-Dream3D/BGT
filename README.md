@@ -18,9 +18,9 @@ git clone https://github.com/AlievaRios/BGT.git
 ### Imaging-derived dataset of behavior-classified T cells. 
 This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6). User needs to run [Module 2. T cell Behavior Classification](https://github.com/AlievaRios/BEHAV3D/tree/dev-transcriptomics?tab=readme-ov-file#2-t-cell-behavior-classification-module) of [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) to generate "classified_tcell_track_data.rds" file which is directly utilized as an input for [Modules 1. Evaluation of super-engager population dynamics in co-culture](https://github.com/AlievaRios/BGT/blob/dev_avi/README.md#1-evaluation-of-super-engager-population-dynamics-in-co-culture) and [Module 3. Population separation in silico simulation](https://github.com/AlievaRios/BGT/blob/dev_avi/README.md#3--population-separation-in-silico-simulation) of the BGT pipeline.
 
-### Single cell sequencing data from T cells incubated with patient derived organoids.
+### Single-cell sequencing data from T cells incubated with patient-derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
-The scRNA seq file we provide for the demo is 10T_master.rds that you can find under the data folder
+The scRNA seq file we provide for the demo is 10T_master.rds which you can find under the data folder
 
 ## Extended Software and Hardware Requirements
 As the BGT pipeline is an extended implementation to the BEHAV3D protocol, the input data required to apply it is generated from BEHAV3D pipeline, which has been extensively described [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6) 
@@ -32,16 +32,17 @@ In terms of user expertise, a basic understanding of R programming is required t
 # Installations 
 You have two options to execute the pipeline:
 - [Option one](#option-1) (Recommended): using the provided Singularity image. This pre-configured image includes all necessary dependencies, reducing manual installation steps and potential errors. This installation was tested in Windows and Linux.
-- [Option two](#option-2):Installing all the libraries and packages yourself (Make sure to use the specific versions of the packages listed)
+- [Option two](#option-2): Installing all the libraries and packages yourself (Make sure to use the specific versions of the packages listed)
 
 ## OPTION 1
 Download the Singularity image [Link ](https://zenodo.org/records/10953043).
-### Install a Linux Distribution (For windows Users)
-Open a powershell command line (search in windows bar for powershell) and execute this command
+### Install a Linux Distribution (For Windows Users)
+Open a PowerShell command line (search in the Windows bar for PowerShell) and execute this command
 
 ```bash
 wsl --install -d Ubuntu-22.04
 ```
+Note: After this step, it is recommended to reboot your system. 
 
 ### Follow the Guide from Singularity Tutorial *OR* the following steps
 
@@ -130,7 +131,15 @@ sudo cp etc/bash_completion.d/singularity /etc/bash_completion.d/
 
 ---
 
-### 5. Execute Your Image
+### 5. Clone your BGT Repository
+
+```bash
+git clone https://github.com/AlievaRios/BGT.git
+```
+
+---
+
+### 6. Execute Your Image
 
 Once you have everything installed, proceed to execute the image you downloaded.
 
@@ -140,7 +149,7 @@ singularity shell --pid bgt_image.sif
 
 ---
 
-### 6. Start RStudio Server
+### 7. Start RStudio Server
 
 When you are inside the Singularity image, execute this command:
 
@@ -150,9 +159,11 @@ rstudio-server start
 
 ---
 
-### 7. Enter RStudio 
+### 8. Enter RStudio 
 
-The webpage will be accessible through any web browser at [http://localhost:8787](http://localhost:8787).
+Copy and paste [http://localhost:8787](http://localhost:8787) this webpage URL.
+The webpage will be accessible through any web browser of your choice.
+You can now run BGT Demo from the Rstudio, instructions to which are provided [here.](https://github.com/AlievaRios/BGT#demos) 
 
 --- 
 NOTE: Rstudio will be closed if you kill the terminal (the data will be preserved)
