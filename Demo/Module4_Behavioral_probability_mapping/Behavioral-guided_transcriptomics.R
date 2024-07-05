@@ -62,7 +62,7 @@ CD8_behav <- read.csv(paste0(BGT_dir, pars$output_dir, 'Module3_Population_seper
 
 # remove column with name 'total_n' if it exists in CD8_behav
 if('total_n' %in% colnames(CD8_behav)){
-		CD8_behav <- CD8_behav[, !colnames(CD8_behav) %in% 'total_n')]}
+		CD8_behav <- CD8_behav[, !colnames(CD8_behav) %in% 'total_n']}
 
 # plotting UMAP dimensional reduction
 p1<-DimPlot(scRNA_seq_dataset, reduction = "umap", pt.size=1, label.size = 8)+theme(aspect.ratio = 1)
