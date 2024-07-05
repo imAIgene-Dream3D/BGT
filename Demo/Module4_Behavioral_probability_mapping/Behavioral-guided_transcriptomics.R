@@ -58,7 +58,7 @@ dir.create(prob_output_dir)
 
 # Load data
 scRNA_seq_dataset <- readRDS(file = pars$scRNA_seq_dataset)
-CD8_behav <- read.csv(paste0(BGT_dir, "Results/Module3_Population_separation_in-silico_simulation/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
+CD8_behav <- read.csv(paste0(BGT_dir, "Results/Module3_Population_separation_simulation/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
 
 # remove column with name 'total_n' if it exists in CD8_behav
 if(“total_n” %in% colnames(CD8_behav)){
