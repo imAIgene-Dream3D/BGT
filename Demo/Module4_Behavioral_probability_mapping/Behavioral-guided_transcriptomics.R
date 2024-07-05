@@ -20,7 +20,7 @@ if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
-  pars = yaml.load_file("~/BGT/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/config_template.yml")
+  pars = yaml.load_file(paste0(BGT_dir, 'config_template.yml'))
 } else {
   ### Define a default BGT_dir for non-interactive sessions if not set
   ### You may adjust this path as necessary for your non-interactive environment
@@ -50,15 +50,15 @@ if (interactive()) {
 # pars = yaml.load_file("config_template.yml")
 
 ### Setting data directory 
-output_dir=paste0(BGT_dir, "/Results/Module4_Behavioral_probability_mapping")
+output_dir=paste0(BGT_dir, pars$output_dir, "Module4_Behavioral_probability_mapping/")
 dir.create(output_dir, recursive=TRUE)
 
-prob_output_dir=paste0(output_dir,"/probability_map")
+prob_output_dir=paste0(output_dir,"probability_map")
 dir.create(prob_output_dir)
 
 # Load data
 scRNA_seq_dataset <- readRDS(file = pars$scRNA_seq_dataset)
-CD8_behav <- read.csv(paste0(BGT_dir, "Results/Module3_Population_separation_simulation/Results/Population_seperation_simulation/CD8_engagement_behavior_freq.csv"))
+CD8_behav <- read.csv(paste0(BGT_dir, pars$output_dir, 'Module3_Population_separation_simulation/CD8_engagement_behavior_freq.csv'))
 
 # remove column with name 'total_n' if it exists in CD8_behav
 if(“total_n” %in% colnames(CD8_behav)){
