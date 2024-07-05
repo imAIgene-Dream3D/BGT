@@ -14,7 +14,7 @@ tracks_provided=NULL
 ### Checks if being run in GUI (e.g. Rstudio) or command line
 if (interactive()) {
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
-  pars = yaml.load_file("config_template.yml")
+  pars = yaml.load_file((paste0(BGT_dir, 'config_template.yml'))
 } else {
   BGT_dir <- "~/BGT"
   option_list = list(
@@ -34,7 +34,7 @@ if (interactive()) {
 }
 # Set path to you config manually
 # pars = yaml.load_file("config_template.yml")
-output_dir= paste0(pars$BGT_dir, pars$output_dir)
+output_dir= paste0(BGT_dir, pars$output_dir, 'Module3_Population_seperation_simulation/')
 
 dir.create(output_dir, recursive=TRUE)
 
