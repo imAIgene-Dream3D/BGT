@@ -16,7 +16,7 @@ if (interactive()) {
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
   pars = yaml.load_file((paste0(BGT_dir, 'config_template.yml'))
 } else {
-  BGT_dir <- "~/BGT"
+  BGT_dir <- "~/BGT/"
   option_list = list(
     make_option(c("-c", "--config"), type="character", default=NULL, help="Path to the BGT config file", metavar="character"),
     make_option(c("-f", "--force_redo"), action="store_true", default=FALSE, help="Force the pipeline to re-import data even if files exists"),
