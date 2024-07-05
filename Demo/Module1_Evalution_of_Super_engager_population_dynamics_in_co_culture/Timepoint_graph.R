@@ -15,7 +15,7 @@ if (interactive()) {
   ### !!!!!! Change the path to the BGT_config file here if running the code in RStudio !!!!!!
   ### Demo path
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
-  pars = yaml.load_file("~/BGT/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/config_template.yml")
+  pars = yaml.load_file(paste0(BGT_dir, 'config_template.yml'))
 } else {
   ### Define a default BGT_dir for non-interactive sessions if not set
   ### You may adjust this path as necessary for your non-interactive environment
@@ -45,7 +45,7 @@ if (interactive()) {
 #  pars = yaml.load_file("path to your config file")
 
 ### Setting data directory (if specified) and creating output directories
-output_dir=paste0(BGT_dir, "/Results/Module1_Evaluation_of_Super_engager_population_dynamics_in_co_culture/")
+output_dir=paste0(BGT_dir, pars$outpur_dir, "Module1_Evaluation_of_Super_engager_population_dynamics_in_co_culture/")
 dir.create(output_dir, recursive=TRUE)
 
 imaging_time = pars$imaging_time
