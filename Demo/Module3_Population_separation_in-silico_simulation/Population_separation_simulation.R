@@ -14,7 +14,7 @@ tracks_provided=NULL
 ### Checks if being run in GUI (e.g. Rstudio) or command line
 if (interactive()) {
   BGT_dir = paste0(dirname(dirname(dirname(rstudioapi::getSourceEditorContext()$path))),"/")
-  pars = yaml.load_file((paste0(BGT_dir, 'config_template.yml'))
+  pars = yaml.load_file(paste0(BGT_dir, 'config_template.yml'))
 } else {
   BGT_dir <- "~/BGT/"
   option_list = list(
