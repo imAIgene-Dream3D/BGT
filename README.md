@@ -230,7 +230,7 @@ You can run BGT on demo data to see examples of the results. This will take <20 
 ![BGT workflow](https://github.com/AlievaRios/BGT/blob/dev_avi/BGT%20analysis%20workflow.jpg)
 ### (1) Evaluation of super-engager population dynamics in co-culture
 
-This module focuses on analyzing T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points. [This analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R) marks the time window during which the super-engager population is most discernible, aiding in the accurate prediction of the timepoint for T cell separation. The classified_tcell_track_data.rds file, encompassing the classified behavioral data for T cells, alongside the determined starting point of imaging (imaging time), are critical inputs for this analysis. These parameters should be incorporated into the provided BGT_config template within the simulation settings section. It is imperative that these are accurate and representative of your specific experimental setup.
+This module analyzes T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points. [This analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture)) marks the time window during which the super-engager population is most discernible, aiding in the accurate prediction of the timepoint for T cell separation. The classified_tcell_track_data.rds file, encompassing the classified behavioral data for T cells, and the determined starting point of imaging (imaging time), is critical for this analysis. These parameters should be incorporated into the provided BGT_config template within the simulation settings section. These must be accurate and representative of your specific experimental setup.
 
 #### Configuration
 Before running the module, ensure the config file (`config_template.yml`) is correctly set up with your specific parameters, including:
@@ -241,11 +241,11 @@ Before running the module, ensure the config file (`config_template.yml`) is cor
 ```bash
 Rscript /path/to/TimepointGraph/Timepoint_graph.R -c </Path/to/BGT/config_template.yml> -f
 ```
-The `-f` flag forces the re-import and processing of data even if the output files already exist. Optionally, use `-t` to specify an RDS file containing processed "classified_tcell_track_data.rds" file, if not already included in the BGT config.
+The `-f` flag forces the re-import and processing of data even if the output files already exist. Optionally, use `-t` to specify an RDS file containing the processed "classified_tcell_track_data.rds" file, if not already included in the BGT config.
 
 ***To run from RStudio:***
 
-**Step 1:** For a demo run, use the [T cell behavioral dynamics](/scripts/TimepointGraph/timepoint_graph.R). Adjust the path to your **BGT config** on [line 18](/scripts/TimepointGraph/timepoint_graph.R#L18) if you're using a different data folder or config file.
+**Step 1:** use the [T cell behavioral dynamics](/scripts/TimepointGraph/timepoint_graph.R) for a demo run. Adjust the path to your **BGT config** on [line 18](/scripts/TimepointGraph/timepoint_graph.R#L18) if you're using a different data folder or config file.
 
 ***Output Files***
 
@@ -258,11 +258,11 @@ Outputs are saved in the specified `output_dir` within the `Results/Seperation_t
 - **Cluster 9 Focus**: By concentrating on cluster 9, it provides an in-depth look at the behavior of T cells demonstrating high engagement levels.
 - **CD4 vs. CD8 Comparison**: Offers valuable insights into distinct engagement patterns between CD4 and CD8 T cells, enhancing the understanding of immune mechanisms.
 
-For additional analysis or adjustments to visualization parameters, consult the [script](/scripts/TimepointGraph/timepoint_graph.R). This might include altering smoothing functions or the analysis time window, depending on the specifics of your experimental setup.
+For additional analysis or adjustments to visualization parameters, consult the [script]([/scripts/TimepointGraph/timepoint_graph.R](https://github.com/imAIgene-Dream3D/BGT/blob/main/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/Timepoint_graph.R)). This might include altering smoothing functions or the analysis time window, depending on the specifics of your experimental setup.
 
 ----
 ### (2) scRNAseq data preprocessing
-This module contains scripts to process and analyze single cell sequencing data of T cells.
+This module contains scripts to process and analyze single-cell sequencing data of T cells.
 To test this pipeline you can either use the provided demos datasets or download an example sequencing data deposited in the GEO depository with the accession number [GSE172325](https://www-ncbi-nlm-nih-gov.ezproxy.u-pec.fr/geo/query/acc.cgi?acc=GSE172325). You have two ways of running these scripts: through Jupyter Notebooks or Markdown R scripts.
 
 ***To run from RStudio:***
@@ -296,7 +296,7 @@ Use the `-f` flag to force re-import and processing of data if output files alre
 
 ***To run from RStudio:***
 
-**Step 2:** For a demo, navigate to the [population_separation_simulation script](/scripts/PopulationSeparationSimulation/population_separation_simulation.R). Adjust the **BGT config** file path on [line 18](/scripts/PopulationSeparationSimulation/population_separation_simulation.R#L18) if working with new data in a different folder.
+**Step 2:** For a demo, navigate to the [population_separation_simulation script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module3_Population_separation_in-silico_simulation)). Adjust the **BGT config** file path on [line 18](/scripts/PopulationSeparationSimulation/population_separation_simulation.R#L18) if working with new data in a different folder.
 
 ***Output Files***
 
@@ -318,7 +318,7 @@ Adjustments to the analysis parameters or visualization aspects can be made by m
 ### (4) Behavioral probability mapping module
 
 This module uses the principle of probability transitivity to infer for each sequenced T cell a probability to belonging to a particular T cell beahvioral class.  
-[Behavioral probability mapping module](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Behavioral-guided_transcriptomics.R) uses as input processes Seurat object from scRNA analysis module along with Tcell_engagement_behavior_freq.csv from the  Population separation in silico simulation module.
+[Behavioral probability mapping module](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module4_Behavioral_probability_mapping) uses as input processes Seurat object from scRNA analysis module along with Tcell_engagement_behavior_freq.csv from the  Population separation in silico simulation module.
 
 
 #### Configuration
@@ -335,7 +335,7 @@ Use `-f` to force re-import and processing of data if output files already exist
 
 ***To run from RStudio:***
 
-**Step 3:** For demonstration purposes, utilize the [Behavioral probability mapping script](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R). If using new data or a different configuration, update the **BGT config** file path on [line 18](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R#L18).
+**Step 3:** For demonstration purposes, utilize the [Behavioral probability mapping script](https://github.com/imAIgene-Dream3D/BGT/blob/main/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R). If using new data or a different configuration, update the **BGT config** file path on [line 18](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R#L18).
 
 ***Output Files***
 
@@ -351,7 +351,7 @@ Outputs are stored in `Results/Behavioral_guided_transcriptomics/` and its subdi
 - **Probability Maps**: Constructs detailed maps showing the likelihood of each cell belonging to different behavioral categories, enabling a deep dive into cellular function and heterogeneity.
 - **Pseudotime Analysis**: Integrates pseudotime analysis to explore the evolution of T-cell states and behaviors over time, revealing insights into cellular progression and differentiation in response to tumor exposure.
 
-For modifications or further analysis, refer to the [script](/scripts/BehavioralGuidedTranscriptomics/behavioral_guided_transcriptomics.R) and adjust parameters or visualization settings as needed based on your specific research questions or experimental design.
+For modifications or further analysis, refer to the [script](https://github.com/imAIgene-Dream3D/BGT/blob/main/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R) and adjust parameters or visualization settings as needed based on your specific research questions or experimental design.
 
 
 ## Example output dataset
