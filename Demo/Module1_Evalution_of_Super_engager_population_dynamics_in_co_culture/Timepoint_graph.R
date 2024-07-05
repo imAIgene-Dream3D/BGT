@@ -45,7 +45,7 @@ if (interactive()) {
 #  pars = yaml.load_file("path to your config file")
 
 ### Setting data directory (if specified) and creating output directories
-output_dir=paste0(BGT_dir, pars$outpur_dir, "Module1_Evaluation_of_Super_engager_population_dynamics_in_co_culture/")
+output_dir=paste0(BGT_dir, pars$output_dir, "Module1_Evaluation_of_Super_engager_population_dynamics_in_co_culture/")
 dir.create(output_dir, recursive=TRUE)
 
 imaging_time = pars$imaging_time
