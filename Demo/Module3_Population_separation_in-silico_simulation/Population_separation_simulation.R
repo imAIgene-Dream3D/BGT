@@ -43,7 +43,7 @@ first_timepoint_interval_starts = pars$first_timepoint_interval_starts
 first_timepoint_interval_ends = pars$first_timepoint_interval_ends
 reoccuring_time = pars$reoccuring_time
 
-master_clust_Live <- readRDS(pars$classified_tcell_track_data_filepath_rds)
+master_clust_Live <- readRDS(paste0(BGT_dir, pars$classified_tcell_track_data_filepath_rds))
 time_intervals <- list()
 
 for (i in 1:n_timepoints) {
