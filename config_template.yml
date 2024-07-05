@@ -32,7 +32,7 @@ reoccuring_time: 30
 
 ### Provide data_dir
 #Processed scRNAseq data after Module 2
-scRNA_seq_dataset: "Demo/Module4_Behavioral_guided_transcriptomics/scRNA_seq_dataset.rds"
+scRNA_seq_dataset: "Demo/Module4_Behavioral_probability_mapping/scRNA_seq_dataset.rds"
 
 
 
