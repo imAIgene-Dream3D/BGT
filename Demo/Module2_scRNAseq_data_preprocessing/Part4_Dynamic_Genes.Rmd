@@ -54,7 +54,8 @@ suppressMessages(library(openxlsx))
 
 Before you start, make sure that you have the data in the current working directory
 ```{r}
-setwd("path to the derised folder")
+home <- "path to the derised folder"
+setwd(home)
 ```
 
 
