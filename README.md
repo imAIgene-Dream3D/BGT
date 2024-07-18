@@ -228,7 +228,7 @@ You can run BGT on demo data to see examples of the results. This will take <20 
 
 ##  Modules
 ![BGT workflow](https://github.com/AlievaRios/BGT/blob/dev_avi/BGT%20analysis%20workflow.jpg)
-### (1) Evaluation of super-engager population dynamics in co-culture
+### (1) Evaluation of optimal timing for ‘Super engaged’ enrichment 
 
 This module analyzes T-cell engagement dynamics, particularly highlighting the activity within cluster 9—representative of super-engagers. It enables a detailed comparison between CD4 and CD8 T-cells' engagement over time in co-culture experiments, visualizing the engagement percentage of T-cells in the super-engager state across various time points. [This analysis](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Timepoint_graph.R](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture)) marks the time window during which the super-engager population is most discernible, aiding in the accurate prediction of the timepoint for T cell separation. The classified_tcell_track_data.rds file, encompassing the classified behavioral data for T cells, and the determined starting point of imaging (imaging time), is critical for this analysis. These parameters should be incorporated into the provided BGT_config template within the simulation settings section. These must be accurate and representative of your specific experimental setup.
 
