@@ -246,7 +246,7 @@ The `-f` flag forces the re-import and processing of data even if the output fil
 
 ***To run from RStudio:***
 
-**Step 1:** use the [T cell behavioral dynamics]([/scripts/TimepointGraph/timepoint_graph.R](https://github.com/imAIgene-Dream3D/BGT/tree/dev_avi/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture)) for a demo run. Adjust the path to your **BGT config** on [line 18]([/scripts/TimepointGraph/timepoint_graph.R#L18](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/Timepoint_graph.R)) if you're using a different data folder or config file.
+**Step 1:** use the [T cell behavioral dynamics](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture) for a demo run. Adjust the path to your **BGT config** on [line 18](https://github.com/imAIgene-Dream3D/BGT/blob/main/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/Timepoint_graph.R) if you're using a different data folder or config file.
 
 ***Output Files***
 
@@ -259,7 +259,7 @@ Outputs are saved in the specified `output_dir` within the `Results/Seperation_t
 - **Cluster 9 Focus**: By concentrating on cluster 9, it provides an in-depth look at the behavior of T cells demonstrating high engagement levels.
 - **CD4 vs. CD8 Comparison**: Offers valuable insights into distinct engagement patterns between CD4 and CD8 T cells, enhancing the understanding of immune mechanisms.
 
-For additional analysis or adjustments to visualization parameters, consult the [script]([/scripts/TimepointGraph/timepoint_graph.R](https://github.com/imAIgene-Dream3D/BGT/blob/main/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/Timepoint_graph.R)]). This might include altering smoothing functions or the analysis time window, depending on the specifics of your experimental setup.
+For additional analysis or adjustments to visualization parameters, consult the [script](https://github.com/imAIgene-Dream3D/BGT/blob/main/Demo/Module1_Evalution_of_Super_engager_population_dynamics_in_co_culture/Timepoint_graph.R). This might include altering smoothing functions or the analysis time window, depending on the specifics of your experimental setup.
 
 ----
 ### (2) scRNAseq data preprocessing
@@ -272,11 +272,11 @@ To test this pipeline you can either use the provided demos datasets or download
 This module is structured in the following way:
 | Script                                 | Jupyter Notebook                                                                                                | R Markdown                                                                                                                                                        | Key Features                                                                                                                                                                      |
 |--------------------------------------|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1 - Pre-processing of raw SORTseq data  | [1 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part1_SORTseq_QC.ipynb)                    | [1 Script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module2_scRNAseq_data_preprocessing/Part1_SORTseq_QC.Rmd)                                                                         | This script is for an initial, per-plate (visual) inspection and to prepare expression matrices for the downstream steps.                                           |
-| 2 - Subset Identification                | [2 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)          | [2 Script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module2_scRNAseq_data_preprocessing/Part2_Subset_Identification.Rmd)                                                              | This script aims to identify different T cell subsets in the dataset and annotate them.                                                                                                                                                   |
-| 3 - Pseudotime Analysis                 | [3 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)                     | [3 Script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module2_scRNAseq_data_preprocessing/Part3_Pseudotime.Rmd)                                                                         | This script aims to infer pseudotime trajectory for TEG subsets we identified during the previous analysis pipeline.                                                                                                                      |
-| 4 - Dynamic Gene Clustering             | [4 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)                 | [4 Script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module2_scRNAseq_data_preprocessing/Part4_Dynamic_Genes.Rmd)                                                                      | This script aims to cluster dynamic genes along the trajectory (identified as the result of running the previous part of the whole analysis pipeline) into categories of genes with highly similar behavior.                           |
-| 5 - Comparison to In vivo Data           | [5 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)            | [5 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.Rmd)                                                                 | This script aims to identify marker genes related to highly tumor-reactive T cells in cancer tumor microenvironment datasets and check whether those genes are also enriched in our TEG dataset's clusters. |
+| 1 - Pre-processing of raw SORTseq data  | [1 Script](https://github.com/AlievaRios/BGT/blob//scripts/Part1_SORTseq_QC.ipynb)                    | [1 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part1_SORTseq_QC.Rmd)                                                                         | This script is for an initial, per-plate (visual) inspection and to prepare expression matrices for the downstream steps.                                           |
+| 2 - Subset Identification                | [2 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part2_Subset_Identification.ipynb)          | [2 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part2_Subset_Identification.Rmd)                                                              | This script aims to identify different T cell subsets in the dataset and annotate them.                                                                                                                                                   |
+| 3 - Pseudotime Analysis                 | [3 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part3_Pseudotime.ipynb)                     | [3 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part3_Pseudotime.Rmd)                                                                         | This script aims to infer pseudotime trajectory for TEG subsets we identified during the previous analysis pipeline.                                                                                                                      |
+| 4 - Dynamic Gene Clustering             | [4 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)                 | [4 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part4_Dynamic_Genes.Rmd)                                                                      | This script aims to cluster dynamic genes along the trajectory (identified as the result of running the previous part of the whole analysis pipeline) into categories of genes with highly similar behavior.                           |
+| 5 - Comparison to In vivo Data           | [5 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)            | [5 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part5_In_vivo_Comparison.Rmd)                                                                 | This script aims to identify marker genes related to highly tumor-reactive T cells in cancer tumor microenvironment datasets and check whether those genes are also enriched in our TEG dataset's clusters. |
 
 ### (3)  Population separation in silico simulation  
 
@@ -297,7 +297,7 @@ Use the `-f` flag to force re-import and processing of data if output files alre
 
 ***To run from RStudio:***
 
-**Step 2:** For a demo, navigate to the [population_separation_simulation script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module3_Population_separation_in-silico_simulation/Population_separation_simulation.R). Adjust the **BGT config** file path on [line 18]([/scripts/PopulationSeparationSimulation/population_separation_simulation.R#L18](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module3_Population_separation_in-silico_simulation/Population_separation_simulation.R)) if working with new data in a different folder.
+**Step 2:** For a demo, navigate to the [population_separation_simulation script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module3_Population_separation_in-silico_simulation/Population_separation_simulation.R). Adjust the **BGT config** file path on [line 18](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module3_Population_separation_in-silico_simulation/Population_separation_simulation.R)) if working with new data in a different folder.
 
 ***Output Files***
 
@@ -312,14 +312,14 @@ Generated outputs in the `Results/Population_seperation_simulation/` directory i
 - **Flexible Time Points**: Leverages user-defined intervals to tailor the analysis to specific experimental setups, enhancing relevance to your research.
 - **Detailed Visualization**: Offers clear, visual representations of T-cell engagement, aiding in the identification of patterns and trends in cellular behavior.
 
-Adjustments to the analysis parameters or visualization aspects can be made by modifying the [script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module3_Population_separation_in-silico_simulation/Population_separation_simulation.R) or the config file, depending on the specifics of the experimental design or analysis goals.
+Adjustments to the analysis parameters or visualization aspects can be made by modifying the [script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module3_Population_separation_in-silico_simulation/Population_separation_simulation.R) or the config file, depending on the specifics of the experimental design or analysis goals.
 
 ----
 
 ### (4) Behavioral probability mapping module
 
 This module uses the principle of probability transitivity to infer for each sequenced T cell a probability to belonging to a particular T cell beahvioral class.  
-[Behavioral probability mapping module](https://github.com/imAIgene-Dream3D/BGT/tree/dev_avi/Demo/Module4_Behavioral_probability_mapping) uses as input processes Seurat object from scRNA analysis module along with Tcell_engagement_behavior_freq.csv from the  Population separation in silico simulation module.
+[Behavioral probability mapping module](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module4_Behavioral_probability_mapping) uses as input processes Seurat object from scRNA analysis module along with Tcell_engagement_behavior_freq.csv from the  Population separation in silico simulation module.
 
 
 #### Configuration
@@ -336,7 +336,7 @@ Use `-f` to force re-import and processing of data if output files already exist
 
 ***To run from RStudio:***
 
-**Step 3:** For demonstration purposes, utilize the [Behavioral probability mapping script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R). If using new data or a different configuration, update the **BGT config** file path on [line 21](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R).
+**Step 3:** For demonstration purposes, utilize the [Behavioral probability mapping script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R). If using new data or a different configuration, update the **BGT config** file path on [line 21](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R).
 
 ***Output Files***
 
@@ -352,7 +352,7 @@ Outputs are stored in `Results/Behavioral_guided_transcriptomics/` and its subdi
 - **Probability Maps**: Constructs detailed maps showing the likelihood of each cell belonging to different behavioral categories, enabling a deep dive into cellular function and heterogeneity.
 - **Pseudotime Analysis**: Integrates pseudotime analysis to explore the evolution of T-cell states and behaviors over time, revealing insights into cellular progression and differentiation in response to tumor exposure.
 
-For modifications or further analysis, refer to the [script](https://github.com/imAIgene-Dream3D/BGT/blob/dev_avi/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R) and adjust parameters or visualization settings as needed based on your specific research questions or experimental design.
+For modifications or further analysis, refer to the [script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module4_Behavioral_probability_mapping/Behavioral-guided_transcriptomics.R) and adjust parameters or visualization settings as needed based on your specific research questions or experimental design.
 
 
 ## Example output dataset
