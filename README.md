@@ -227,7 +227,7 @@ This repository contains a collection of scripts and example datasets enabling t
 You can run BGT on demo data to see examples of the results. This will take <20 minutes
 
 ##  Modules
-![BGT workflow](https://github.com/imAIgene-Dream3D/BGT/blob/main/BGT%20analysis%20workflow.jpeg)
+![BGT workflow](https://github.com/imAIgene-Dream3D/BGT/blob/main/BGT_workflow_analysis.jpg)
 
 ### (1) Evaluation of optimal timing for ‘Super engaged’ enrichment 
 
