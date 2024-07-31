@@ -16,7 +16,7 @@ git clone https://github.com/AlievaRios/BGT.git
 ## Input data
 
 ### Imaging-derived dataset of behavior-classified T cells. 
-This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6). User needs to run [Module 2. T cell Behavior Classification](https://github.com/AlievaRios/BEHAV3D/tree/dev-transcriptomics?tab=readme-ov-file#2-t-cell-behavior-classification-module) of [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) to generate "classified_tcell_track_data.rds" file which is directly utilized as an input for [Modules 1. Evaluation of super-engager population dynamics in co-culture](https://github.com/AlievaRios/BGT/blob/dev_avi/README.md#1-evaluation-of-super-engager-population-dynamics-in-co-culture) and [Module 3. Population separation in silico simulation](https://github.com/AlievaRios/BGT/blob/dev_avi/README.md#3--population-separation-in-silico-simulation) of the BGT pipeline.
+This data is obtained by performing multispectral time-lapse imaging of T cells incubated with tumor organoids and processed with BEHAV3D. Refer to [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) repository and our detailed Protocol to obtain this data [Alieva et al, Nat Protoc, 2024](https://www.nature.com/articles/s41596-024-00972-6). User needs to run [Module 2. T cell Behavior Classification](https://github.com/AlievaRios/BEHAV3D/tree/dev-transcriptomics?tab=readme-ov-file#2-t-cell-behavior-classification-module) of [BEHAV3D](https://github.com/AlievaRios/BEHAV3D) to generate "classified_tcell_track_data.rds" file which is directly utilized as an input for [Modules 1. Evaluation of super-engager population dynamics in co-culture](https://github.com/AlievaRios/BGT/blob/dev_avi/README.md#1-evaluation-of-super-engager-population-dynamics-in-co-culture) and [Module 3. in silico population separation simulation](https://github.com/AlievaRios/BGT/blob/dev_avi/README.md#3--population-separation-in-silico-simulation) of the BGT pipeline.
 
 ### Single-cell sequencing data from T cells incubated with patient-derived organoids.
 This data is obtained from running SORT seq on T cells incubated with tumor organoids.
@@ -278,7 +278,7 @@ This module is structured in the following way:
 | 4 - Dynamic Gene Clustering             | [4 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)                 | [4 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part4_Dynamic_Genes.Rmd)                                                                      | This script aims to cluster dynamic genes along the trajectory (identified as the result of running the previous part of the whole analysis pipeline) into categories of genes with highly similar behavior.                           |
 | 5 - Comparison to In vivo Data           | [5 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)            | [5 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part5_In_vivo_Comparison.Rmd)                                                                 | This script aims to identify marker genes related to highly tumor-reactive T cells in cancer tumor microenvironment datasets and check whether those genes are also enriched in our TEG dataset's clusters. |
 
-### (3)  Population separation in silico simulation  
+### (3)  in silico population separation simulation  
 
 This module simulates T-cell population separation into engagers and non-engagers over multiple time points, providing insights into T-cell dynamics in a co-culture environment. It utilizes user-defined parameters from the configuration file to analyze and visualize the engagement behavior of CD4 and CD8 T-cells.
 
@@ -319,7 +319,7 @@ Adjustments to the analysis parameters or visualization aspects can be made by m
 ### (4) Behavioral probability mapping module
 
 This module uses the principle of probability transitivity to infer for each sequenced T cell a probability to belonging to a particular T cell beahvioral class.  
-[Behavioral probability mapping module](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module4_Behavioral_probability_mapping) uses as input processes Seurat object from scRNA analysis module along with Tcell_engagement_behavior_freq.csv from the  Population separation in silico simulation module.
+[Behavioral probability mapping module](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module4_Behavioral_probability_mapping) uses as input processes Seurat object from scRNA analysis module along with Tcell_engagement_behavior_freq.csv from the  in silico population separation simulation module.
 
 
 #### Configuration
