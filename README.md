@@ -278,7 +278,7 @@ This module is structured in the following way:
 | 4 - Dynamic Gene Clustering             | [4 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part4_Dynamic_Genes.ipynb)                 | [4 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part4_Dynamic_Genes.Rmd)                                                                      | This script aims to cluster dynamic genes along the trajectory (identified as the result of running the previous part of the whole analysis pipeline) into categories of genes with highly similar behavior.                           |
 | 5 - Comparison to In vivo Data           | [5 Script](https://github.com/AlievaRios/BGT/blob/dev_avi/scripts/Part5_In_vivo_Comparison.ipynb)            | [5 Script](https://github.com/imAIgene-Dream3D/BGT/tree/main/Demo/Module2_scRNAseq_data_preprocessing/Part5_In_vivo_Comparison.Rmd)                                                                 | This script aims to identify marker genes related to highly tumor-reactive T cells in cancer tumor microenvironment datasets and check whether those genes are also enriched in our TEG dataset's clusters. |
 
-### (3)  in silico population separation simulation  
+### (3)  *In silico* population separation simulation  
 
 This module simulates T-cell population separation into engagers and non-engagers over multiple time points, providing insights into T-cell dynamics in a co-culture environment. It utilizes user-defined parameters from the configuration file to analyze and visualize the engagement behavior of CD4 and CD8 T-cells.
 
