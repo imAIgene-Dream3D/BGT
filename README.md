@@ -32,6 +32,7 @@ In terms of user expertise, a basic understanding of R programming is required t
 # Installations 
 You have two options to execute the pipeline:
 - [Option one](#option-1) (Recommended): using the provided Singularity image. This pre-configured image includes all necessary dependencies, reducing manual installation steps and potential errors. This installation was tested in Windows and Linux.
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=hVLZ37qRe_0)
 - [Option two](#option-2): Installing all the libraries and packages yourself (Make sure to use the specific versions of the packages listed)
 
 ## OPTION 1
