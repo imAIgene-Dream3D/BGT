@@ -1,5 +1,5 @@
 # Behavioral Guided Transcriptomics (BGT) Pipeline
-
+[Watch Video Overview](https://www.youtube.com/watch?v=0MntKibDNCE)
 BGT is an imaging-guided transcriptomic experimental and analytical pipeline for co-cultures of Patient Derived Organoides with (engeneered) T cells described in [Dekkers&Alieva et al Nat. Biotech (2022)](https://www.nature.com/articles/s41587-022-01397-w). This repository compiles the analytical procedures required to integrate data from single-cell RNA sequencing of T cells with single-cell imaging data, providing for each sequenced cell probabilities of exhibiting different functional behaviors.
 
 ## Cloning Instructions
