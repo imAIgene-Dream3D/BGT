@@ -34,9 +34,9 @@ if (interactive()) {
 }
 # Set path to you config manually
 # pars = yaml.load_file("config_template.yml")
-output_dir= paste0(BGT_dir, pars$output_dir, 'Module3_Population_seperation_simulation/')
+output_dir= paste0(BGT_dir, pars$output_dir, 'Module3_Population_separation_simulation/')
 
-dir.create(output_dir, recursive=TRUE)
+dir.create(output_dir, recursive=TRUE, showWarnings = FALSE)
 
 n_timepoints = pars$n_timepoints
 first_timepoint_interval_starts = pars$first_timepoint_interval_starts
@@ -46,6 +46,7 @@ reoccuring_time = pars$reoccuring_time
 master_clust_Live <- readRDS(paste0(BGT_dir, pars$classified_tcell_track_data_filepath_rds))
 time_intervals <- list()
 
+
 for (i in 1:n_timepoints) {
   interval_start <- first_timepoint_interval_starts + (i - 1) * reoccuring_time
   interval_end <- first_timepoint_interval_ends + (i - 1) * reoccuring_time
@@ -53,7 +54,7 @@ for (i in 1:n_timepoints) {
 }
 
 t1 = c(first_timepoint_interval_starts:first_timepoint_interval_ends)
-t2 = c(interval_start:interval_end)
+t2 <- seq(time_intervals[[2]][1], time_intervals[[2]][2])
 
 color_palette <- c("darkolivegreen3",
                    "seagreen3",
@@ -77,7 +78,6 @@ Behavioral_signatures <- c(
 
 
 # Generate timepoint ranges
-time_intervals <- list()
 for (i in 1:n_timepoints) {
   interval_start <- first_timepoint_interval_starts + (i - 1) * reoccuring_time
   interval_end <- first_timepoint_interval_ends + (i - 1) * reoccuring_time
@@ -88,11 +88,10 @@ for (i in 1:n_timepoints) {
 plan(multisession, workers = 4)
 # Process data and plot for each time interval
 plots <- future_map(time_intervals, function(interval) {
-  subset_data <- master_clust_Live %>%
+  subset_data <- master_clust_Live%>%
     filter(Time >= interval[1], Time <= interval[2])
-  
-  cd8_data <- subset_data %>% filter(str_detect(tcell_line, "CD8"), cluster != "1")
-  cd4_data <- subset_data %>% filter(str_detect(tcell_line, "CD4"), cluster != "1")
+  cd8_data <- subset_data %>% filter(str_detect(tcell_line, "CD8"), cluster != 1)
+  cd4_data <- subset_data %>% filter(str_detect(tcell_line, "CD4"), cluster != 1)
   
   plot_cd8 <- ggplot(cd8_data, aes(x = factor(contact), fill = factor(cluster))) +
     geom_bar(position = "fill") +
@@ -101,7 +100,7 @@ plots <- future_map(time_intervals, function(interval) {
     labs(y = "Percentage", x = "Contact", title = sprintf("CD8 Engagement between timepoint %s", paste(interval, collapse = "-"))) +
     theme_minimal() +
     coord_flip() +
-    facet_wrap(~tcell_line)
+    facet_grid(~tcell_line)
   print(plot_cd8)
   
   plot_cd4 <- ggplot(cd4_data, aes(x = factor(contact), fill = factor(cluster))) +
@@ -111,47 +110,43 @@ plots <- future_map(time_intervals, function(interval) {
     labs(y = "Percentage", x = "Contact", title = sprintf("CD4 Engagement between timepoint %s", paste(interval, collapse = "-"))) +
     theme_minimal() +
     coord_flip() +
-    facet_wrap(~tcell_line)
+    facet_grid(~tcell_line)
   print(plot_cd4)
   
   list(CD8 = plot_cd8, CD4 = plot_cd4)
 })
 
-if (n_timepoints == 1) {
-  # Save plots
-  walk2(plots, seq_along(plots), ~{
-    ggsave(filename = file.path(output_dir, sprintf("plot_cd8_timepoint_%s.png", .y)), plot = .x$CD8, width = 8, height = 6)
-    ggsave(filename = file.path(output_dir, sprintf("plot_cd4_timepoint_%s.png", .y)), plot = .x$CD4, width = 8, height = 6)
-  })
+walk2(plots, seq_along(plots), ~{
+  ggsave(filename = file.path(output_dir, sprintf("plot_cd8_timepoint_%s.png", .y)), plot = .x$CD8, width = 8, height = 6)
+  ggsave(filename = file.path(output_dir, sprintf("plot_cd4_timepoint_%s.png", .y)), plot = .x$CD4, width = 8, height = 6)
+})
+
+# Engagement frequency analysis and CSV output
+engagement_analysis_and_output <- function(cell_type) {
+  engagement <- master_clust_Live %>% filter(str_detect(tcell_line, cell_type))
+  behav <- engagement %>%
+    group_by(cluster, ifelse(contact == 1, "engaged", "Non_engaged")) %>%
+    summarize(frequency = n(), .groups = 'drop') %>%
+    mutate(percentage = frequency / sum(frequency) * 100)
   
-  # Engagement frequency analysis and CSV output
-  engagement_analysis_and_output <- function(cell_type) {
-    engagement <- master_clust_Live %>% filter(str_detect(tcell_line, cell_type))
-    behav <- engagement %>%
-      group_by(cluster, ifelse(contact == 1, "engagerd", "Non_engaged")) %>%
-      summarize(frequency = n(), .groups = 'drop') %>%
-      mutate(percentage = frequency / sum(frequency) * 100)
-    
-    write.csv(behav, file.path(output_dir, paste0(cell_type, "_engagement_behavior_freq.csv")), row.names = FALSE)
-  }
-  
-  engagement_analysis_and_output("CD8")
-  engagement_analysis_and_output("CD4")
-  
-  print("Engagement frequency analysis completed and results saved to CSV.")
-  print("Simulation completed.")
-  dev.off()
-  
-} else if (n_timepoints == 2) {
-  
+  write.csv(behav, file.path(output_dir, paste0(cell_type, "_engagement_behavior_freq.csv")), row.names = FALSE)
+}
+
+engagement_analysis_and_output("CD8")
+engagement_analysis_and_output("CD4")
+
+print("Engagement frequency analysis completed and results saved to CSV.")
+ 
+if (n_timepoints >= 2) {
   # Analysis 1
   ### calculate the frequency of behaviors per conditions for CD8 only:
-  
   ### Simulate the selection at t2 hours of T cells that were or were not in contact with organoids at that timepoint
+  
   master_clust_Live2_CD4_CD8<-filter(master_clust_Live, grepl("CD4|CD8", tcell_line))
   
   ### Select cells at timepoint t2  and remove cluster 1 since in the real experiment dead cells are excluded by FACS
-  master_clust_Live2_CD8<-subset(master_clust_Live2_CD4_CD8, Time%in%t2 & grepl("CD8", tcell_line) & !cluster=="1") 
+  master_clust_Live2_CD8<-subset(master_clust_Live2_CD4_CD8, Time%in%t2 & grepl("CD8", tcell_line) & cluster != 1) 
+  
   ### For each trackID select the last timepoint in the t2 hours range
   master_clust_Live2_CD8<-master_clust_Live2_CD8%>%group_by(TrackID)%>%filter(Time==max(Time)) 
   
@@ -159,19 +154,26 @@ if (n_timepoints == 1) {
   Plot_Eng_CD8<-ggplot(master_clust_Live2_CD8, aes(x=factor(contact), fill=as.factor(cluster))) + 
     geom_bar(position="fill")+
     # scale_x_discrete(breaks=c(0,1), minor_breaks = NULL, n.breaks=2, labels = c("True", "False"))+
-    labs(y = "Percentage", x = "Contact", title = paste0("Engager & non-engager CD8 \nbetween timepoint ", interval_start, " and ", interval_end))+
+    labs(y = "Percentage", x = "Contact", title = paste0("Engager & non-engager CD8 \nbetween timepoint ", min(t2), " and ", max(t2)))+
     scale_x_discrete(labels=c("No Contact", "Contact"))+
     scale_fill_manual(name = "Behavioral\nsignature", labels = Behavioral_signatures, values=color_palette)+
     theme_minimal()+
     theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
     coord_flip() +
-    # facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
-    facet_grid(organoid_line  ~ tcell_line)+
-    facet_wrap(~tcell_line)
-  Plot_Eng_CD8
-  ggsave(filename = paste0(output_dir, "Engager & non-engager CD8 between timepoint.png"), plot = Plot_Eng_CD8, width = 8, height = 6)
+    facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
+    #facet_grid(organoid_line  ~ tcell_line)+
+    #facet_grid(~tcell_line)
+  print(Plot_Eng_CD8)
+  ggsave(filename = paste0(output_dir, "Engager_&_non-engager_CD8.png"), plot = Plot_Eng_CD8, width = 8, height = 6)
   
   ### Now plot the super engagers and the never engagers. These cells under go two washing and separation steps:
+  #t₁ window      t₂ window        Assigned label
+ # -----------    -----------      --------------
+  #contact = 0    contact = 0   →  never-engaged
+  #contact = 0    contact = 1   →  engager
+  #contact = 1    contact = 0   →  nonengager
+  #contact = 1    contact = 1   →  super-engaged
+  
   ### 1) at t1 hours they are separated into  contacting organoids and non-contacting organoids and then put back in culture. For the non-contacting organoids condition new organoids are added.
   ### 2) at t2 hours they are separated again into contact organoids and non=contacting organoids T cells.
   
@@ -189,41 +191,43 @@ if (n_timepoints == 1) {
   master_clust_Live2_SEN_CD8<-subset(master_clust_Live2_CD8, contact==1 &TrackID%in%master_clust_Live1_EN_CD8$TrackID)
   master_clust_Live2_NEN_CD8<-subset(master_clust_Live2_CD8, contact==0 &TrackID%in%master_clust_Live1_NEN_CD8$TrackID)
   master_clust_Live2_NEN_SEN_CD8<-rbind(master_clust_Live2_NEN_CD8,master_clust_Live2_SEN_CD8)
-  master_clust_Live2_NEN_SEN_CD8<-subset(master_clust_Live2_NEN_SEN_CD8, !cluster=="1") ## remove dying cell cluster, since will be deleted by FACS
-  
-  Plot_SEng_CD8<-ggplot(master_clust_Live2_NEN_SEN_CD8, aes(fill=as.factor(cluster), x=as.factor(contact))) + 
-    geom_bar( position="fill")+ 
-    labs(y = "Percentage", x = "Contact", title = "Super-engager & Never-engager CD8")+
-    scale_x_discrete(labels=c("No Contact", "Contact"))+
-    scale_fill_manual(name = "Behavioral\nsignature", labels = Behavioral_signatures, values=color_palette)+
-    theme_minimal()+
-    theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
-    coord_flip() +
-    # facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
-    facet_grid(organoid_line  ~ tcell_line)
-  Plot_SEng_CD8
-  ggsave(filename = paste0(output_dir, "Super-engager & Never-engager CD8.png"), plot = Plot_SEng_CD8, width = 8, height = 6)
-  
-  
+  master_clust_Live2_NEN_SEN_CD8<-subset(master_clust_Live2_NEN_SEN_CD8, cluster != 1) ## remove dying cell cluster, since will be deleted by FACS
+  if (nrow(master_clust_Live2_NEN_SEN_CD8) > 0) {
+    Plot_SEng_CD8<-ggplot(master_clust_Live2_NEN_SEN_CD8, aes(fill=as.factor(cluster), x=as.factor(contact))) + 
+      geom_bar( position="fill")+ 
+      labs(y = "Percentage", x = "Contact", title = "Super-engager & Never-engager CD8")+
+      scale_x_discrete(labels=c("No Contact", "Contact"))+
+      scale_fill_manual(name = "Behavioral\nsignature", labels = Behavioral_signatures, values=color_palette)+
+      theme_minimal()+
+      theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
+      coord_flip() +
+      #facet_grid(organoid_line  ~ tcell_line)+
+      facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
+    print(Plot_SEng_CD8)
+    ggsave(filename = paste0(output_dir, "Super-engager_&_Never-engager_CD8.png"), plot = Plot_SEng_CD8, width = 8, height = 6)
+  } else {
+    message("⚠️  No Super-/Never-engager CD8 rows; skipping that plot")
+  }
+      
   #### Repeat the same for the CD4 cells
   ### calculate the frequency of behaviors per conditions for CD4 only:
   ### Simulate the selection at t2 of T cells that were or were not in contact with organoids at that timepoint
-  master_clust_Live2_CD4<-subset(master_clust_Live2_CD4_CD8, Time%in%t2 & grepl("CD4", tcell_line) & !cluster=="1")
+  master_clust_Live2_CD4<-subset(master_clust_Live2_CD4_CD8, Time%in%t2 & grepl("CD4", tcell_line) & cluster != 1)
   master_clust_Live2_CD4<-master_clust_Live2_CD4%>%group_by(TrackID)%>%filter(Time==max(Time))
   
-  Plot_Eng_CD4<-ggplot(master_clust_Live2_CD4, aes(fill=as.factor(cluster), x=as.factor(contact))) + 
+  Plot_Eng_CD4 <- ggplot(master_clust_Live2_CD4, aes(fill=as.factor(cluster), x=as.factor(contact))) + 
     geom_bar( position="fill")+ 
     # scale_x_discrete(breaks=c(0,1), minor_breaks = NULL, n.breaks=2, labels = c("True", "False"))+
-    labs(y = "Percentage", x = "Contact", title = paste0("Engager & non-engager CD4 \nbetween timepoint ", interval_start, " and ", interval_end))+
+    labs(y = "Percentage", x = "Contact", title = paste0("Engager & non-engager CD4 \nbetween timepoint ", min(t2), " and ", max(t2)))+
     scale_x_discrete(labels=c("No Contact", "Contact"))+
     scale_fill_manual(name = "Behavioral\nsignature", labels = Behavioral_signatures, values=color_palette)+
     theme_minimal()+
     theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
     coord_flip() +
-    # facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
-    facet_grid(organoid_line  ~ tcell_line)
-  Plot_Eng_CD4
-  ggsave(filename = paste0(output_dir, "Engager & non-engager CD4 between timepoint.png"), plot = Plot_Eng_CD4, width = 8, height = 6)
+    facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
+    #facet_grid(organoid_line  ~ tcell_line)
+  print(Plot_Eng_CD4)
+  ggsave(filename = paste0(output_dir, "Engager_&_non-engager_CD4.png"), plot = Plot_Eng_CD4, width = 8, height = 6)
   
   #Analysis 2
   ### Never engagers> T cells that were not in contact with organoids at t1 and also not at t2.
@@ -238,29 +242,55 @@ if (n_timepoints == 1) {
   master_clust_Live2_SEN_CD4<-subset(master_clust_Live2_CD4, contact==1 &TrackID%in%master_clust_Live1_EN_CD4$TrackID)
   master_clust_Live2_NEN_CD4<-subset(master_clust_Live2_CD4, contact==0 &TrackID%in%master_clust_Live1_NEN_CD4$TrackID)
   master_clust_Live2_NEN_SEN_CD4<-rbind(master_clust_Live2_NEN_CD4,master_clust_Live2_SEN_CD4)
-  master_clust_Live2_NEN_SEN_CD4<-subset(master_clust_Live2_NEN_SEN_CD4, !cluster=="1") ## remove dying cell cluster, since will be deleted by FACS
-  
-  Plot_SEng_CD4<-ggplot(master_clust_Live2_NEN_SEN_CD4, aes(fill=as.factor(cluster), x=as.factor(contact))) + 
-    geom_bar( position="fill")+ 
-    labs(y = "Percentage", x = "Contact", title = "Super-engager & Never-engager CD4")+
-    scale_x_discrete(labels=c("No Contact", "Contact"))+
-    scale_fill_manual(name = "Behavioral\nsignature", labels = Behavioral_signatures, values=color_palette)+
-    theme_minimal()+
-    theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
-    coord_flip() +
-    # facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
-    facet_grid(organoid_line  ~ tcell_line)
-  Plot_SEng_CD4
-  ggsave(filename = paste0(output_dir, "Engager & non-engager CD4 between timepoint.png"), plot = Plot_Eng_CD4, width = 8, height = 6)
-  
+  master_clust_Live2_NEN_SEN_CD4<-subset(master_clust_Live2_NEN_SEN_CD4, cluster != 1) ## remove dying cell cluster, since will be deleted by FACS
+  if (nrow(master_clust_Live2_NEN_SEN_CD4) > 0) {
+    Plot_SEng_CD4<-ggplot(master_clust_Live2_NEN_SEN_CD4, aes(fill=as.factor(cluster), x=as.factor(contact))) + 
+      geom_bar( position="fill")+ 
+      labs(y = "Percentage", x = "Contact", title = "Super-engager & Never-engager CD4")+
+      scale_x_discrete(labels=c("No Contact", "Contact"))+
+      scale_fill_manual(name = "Behavioral\nsignature", labels = Behavioral_signatures, values=color_palette)+
+      theme_minimal()+
+      theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
+      coord_flip() +
+      #facet_grid(organoid_line  ~ tcell_line)+
+      facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
+    print(Plot_SEng_CD4)
+    ggsave(filename = paste0(output_dir, "Super-engager_&_Never-engager_CD4.png"), plot = Plot_SEng_CD4, width = 8, height = 6)
+  } else {
+    message("⚠️  No Super-/Never-engager CD8 rows; skipping that plot")
+  }
   # Analysis 3
   ########################### CD8 ########################################################
-  ### calculare the proportions for combination with scRNA seq:
+  ### calculate the proportions for combination with scRNA seq:
   ### create a condition for each experimental condition
-  master_clust_Live2_CD8$engagement<-ifelse(master_clust_Live2_CD8$contact==1, "engager","nonengager")
-  master_clust_Live2_NEN_SEN_CD8$engagement<-ifelse(master_clust_Live2_NEN_SEN_CD8$contact==1,"super-engaged","never-engaged")
-  ## join both datasets:
-  CD8_engagement<-rbind(master_clust_Live2_CD8,master_clust_Live2_NEN_SEN_CD8)
+  # 1) Build df1 for the “engager/nonengager” population
+  df1 <- master_clust_Live2_CD8 %>%
+    # drop any existing engagement just to be safe
+    select(-any_of("engagement")) %>%  
+    mutate(
+      engagement = ifelse(contact == 1, 
+                          "engager", 
+                          "nonengager")
+    )
+  
+  # 2) Build df2 for the “super/never-engaged” population
+  df2 <- master_clust_Live2_NEN_SEN_CD8 %>%
+    select(-any_of("engagement")) %>%
+    mutate(
+      engagement = ifelse(contact == 1,
+                          "super-engaged",
+                          "never-engaged")
+    )
+  
+  # 3) Sanity-check types
+  message("df1 engagement type: ", class(df1$engagement)[1])
+  message("df2 engagement type: ", class(df2$engagement)[1])
+  # both should print "character"
+  
+  # 4) Now bind
+  CD8_engagement <- bind_rows(df1, df2)
+  
+  
   library(dplyr)
   CD8_behav<-CD8_engagement %>% group_by(cluster,engagement) %>%summarize(frec = n(), .groups = "drop")
   engagement_n<-CD8_engagement %>% group_by(engagement) %>%summarize(total_n = n(), .groups = "drop")
@@ -277,10 +307,10 @@ if (n_timepoints == 1) {
     theme_minimal()+
     theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
     coord_flip() +
-    # facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
-    facet_grid(organoid_line  ~ tcell_line)
-  Plot_x
-  ggsave(filename = paste0(output_dir, "Proportions of the four different types of engagers_CD8.png"), plot = Plot_x, width = 8, height = 6)
+    facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
+    #facet_grid(organoid_line  ~ tcell_line)
+  print(Plot_x)
+  ggsave(filename = paste0(output_dir, "Proportions_of_the_four_different_types_of_engagers_CD8.png"), plot = Plot_x, width = 8, height = 6)
   
   ### save data to csv same folder where the pseudotime clustering from Farid
   write.csv(CD8_behav,paste0(output_dir, "CD8_engagement_behavior_freq.csv"), row.names = FALSE)
@@ -295,19 +325,19 @@ if (n_timepoints == 1) {
   
   
   ## E mean contact time:
-  master_clust_Live2_CD8_e_pop<-subset(CD8_engagement, engagement=="engaged")
+  master_clust_Live2_CD8_e_pop<-subset(CD8_engagement, engagement=="engager")
   ###calculate the mean engagement time for each signature:
   mean_cont_E<- master_clust_Live2_CD4_CD8%>%filter(TrackID%in%master_clust_Live2_CD8_e_pop$TrackID)%>%group_by(cluster)%>%
     summarise(contact_per_h= mean(contact)*60)
-  mean_cont_E$exp<-"engaged"
+  mean_cont_E$exp<-"engager"
   
   
   ## NonE mean contact time:
-  master_clust_Live2_CD8_noe_pop<-subset(CD8_engagement, engagement=="non-engaged")
+  master_clust_Live2_CD8_noe_pop<-subset(CD8_engagement, engagement=="nonengager")
   ###calculate the mean engagement time for each signature:
   mean_cont_NoE<- master_clust_Live2_CD4_CD8%>%filter(TrackID%in%master_clust_Live2_CD8_noe_pop$TrackID)%>%group_by(cluster)%>%
     summarise(contact_per_h= mean(contact)*60)
-  mean_cont_NoE$exp<-"non-engaged"
+  mean_cont_NoE$exp<-"nonengager"
   
   
   ## No mean contact time:
@@ -347,18 +377,18 @@ if (n_timepoints == 1) {
     theme_minimal()+
     theme(aspect.ratio = 0.2, axis.text.y = element_text())+  
     coord_flip() +
-    facet_wrap(~tcell_line)+
-    # facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
-    facet_grid(organoid_line  ~ tcell_line)
-  Plot_y
-  ggsave(filename = paste0(output_dir, "Proportions of the four different types of engagers_CD4.png"), plot = Plot_y, width = 8, height = 6)
-  ### save data to csv same folder where the pseudotime clustering from Farid
+    #facet_grid(~tcell_line)+
+    #facet_grid(organoid_line  ~ tcell_line)+
+    facet_grid(interaction(exp_nr, well, organoid_line)  ~ tcell_line) #For plotting all wells separately
+  print(Plot_y)
+  ggsave(filename = paste0(output_dir, "Proportions_of_the_four_different_types_of_engagers_CD4.png"), plot = Plot_y, width = 8, height = 6)
+  ### save data to csv same folder where the pseudotime clustering 
   write.csv(CD4_behav,paste0(output_dir,"CD4_engagement_behavior_freq.csv"), row.names = FALSE)
   
-  #pdf(file = paste0(output_dir,"Engager_Super_ENG_proportions_CD4_CD8.pdf"))
-  #Plot_x
-  #Plot_y
-  
+  pdf(file = paste0(output_dir, "Engager_Super_ENG_proportions_CD4_CD8.pdf"))
+  print(Plot_x)
+  print(Plot_y)
+  dev.off()
   print("Engagement frequency analysis completed and results saved to CSV.")
   print("Simulation completed.")
 }
